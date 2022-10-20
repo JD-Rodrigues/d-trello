@@ -50,6 +50,10 @@
   float: right;
 }
 
+.ph-pencil-fill, .ph-trash-fill {
+  float: right;
+}
+
 .kanban-board .kanban-drag {
   min-height: 200px;
   padding: 20px;

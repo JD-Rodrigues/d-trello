@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css?family=Lato"
       rel="stylesheet"
     />
-
+    <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
       body {
         font-family: "Lato";
@@ -53,16 +53,19 @@
     </style>
   </head>
   <body>
+    <header>
+      <button id="addDefault">Adicionar novo quadro</button>
+      <input type="search" name="" id="">
+    </header>
     <div id="myKanban"></div>
-    <button id="addDefault">Add "Default" board</button>
-    <br />
+    <!-- <br />
     <button id="addToDo">Add element in "To Do" Board</button>
     <br />
     <button id="addToDoAtPosition">Add element in "To Do" Board at position 2</button>
     <br />
     <button id="removeBoard">Remove "Done" Board</button>
     <br />
-    <button id="removeElement">Remove "My Task Test"</button>
+    <button id="removeElement">Remove "My Task Test"</button> -->
 
     <script src="./js/d-trello.js"></script>
     <script>
@@ -114,78 +117,40 @@
         boards: [
           {
             id: "_todo",
-            title: "To Do (Can drop item only in working)",
+            title: "A fazer <i class='ph-pencil-fill'></i>",
             class: "info,good",
             dragTo: ["_working"],
-            item: [
-              {
-                id: "_test_delete",
-                title: "Try drag this (Look the console)",
-                drag: function(el, source) {
-                  console.log("START DRAG: " + el.dataset.eid);
-                },
-                dragend: function(el) {
-                  console.log("END DRAG: " + el.dataset.eid);
-                },
-                drop: function(el) {
-                  console.log("DROPPED: " + el.dataset.eid);
-                }
-              },
-              {
-                title: "Try Click This!",
-                click: function(el) {
-                  alert("click");
-                },
-                context: function(el, e){
-                  alert("right-click at (" + `${e.pageX}` + "," + `${e.pageX}` + ")")
-                },
-                class: ["peppe", "bello"]
-              }
-            ]
+            item: []
           },
           {
             id: "_working",
-            title: "Working (Try drag me too)",
+            title: "Fazendo <i class='ph-pencil-fill'></i>",
             class: "warning",
-            item: [
-              {
-                title: "Do Something!"
-              },
-              {
-                title: "Run?"
-              }
-            ]
+            item: []
           },
           {
             id: "_done",
-            title: "Done (Can drop item only in working)",
+            title: "Feito <i class='ph-pencil-fill'></i>",
             class: "success",
             dragTo: ["_working"],
-            item: [
-              {
-                title: "All right"
-              },
-              {
-                title: "Ok!"
-              }
-            ]
+            item: []
           }
         ]
       });
 
-      var toDoButton = document.getElementById("addToDo");
-      toDoButton.addEventListener("click", function() {
-        KanbanTest.addElement("_todo", {
-          title: "Test Add"
-        });
-      });
+      // var toDoButton = document.getElementById("addToDo");
+      // toDoButton.addEventListener("click", function() {
+      //   KanbanTest.addElement("_todo", {
+      //     title: "Test Add"
+      //   });
+      // });
 
-      var toDoButtonAtPosition = document.getElementById("addToDoAtPosition");
-      toDoButtonAtPosition.addEventListener("click", function() {
-        KanbanTest.addElement("_todo", {
-          title: "Test Add at Pos"
-        }, 1);
-      });
+      // var toDoButtonAtPosition = document.getElementById("addToDoAtPosition");
+      // toDoButtonAtPosition.addEventListener("click", function() {
+      //   KanbanTest.addElement("_todo", {
+      //     title: "Test Add at Pos"
+      //   }, 1);
+      // });
 
       var addBoardDefault = document.getElementById("addDefault");
       addBoardDefault.addEventListener("click", function() {
@@ -208,15 +173,15 @@
         ]);
       });
 
-      var removeBoard = document.getElementById("removeBoard");
-      removeBoard.addEventListener("click", function() {
-        KanbanTest.removeBoard("_done");
-      });
+      // var removeBoard = document.getElementById("removeBoard");
+      // removeBoard.addEventListener("click", function() {
+      //   KanbanTest.removeBoard("_done");
+      // });
 
-      var removeElement = document.getElementById("removeElement");
-      removeElement.addEventListener("click", function() {
-        KanbanTest.removeElement("_test_delete");
-      });
+      // var removeElement = document.getElementById("removeElement");
+      // removeElement.addEventListener("click", function() {
+      //   KanbanTest.removeElement("_test_delete");
+      // });
 
       var allEle = KanbanTest.getBoardElements("_todo");
       allEle.forEach(function(item, index) {
