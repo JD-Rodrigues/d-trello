@@ -62,7 +62,7 @@ var dragula = require('dragula');
     this.__getCanMove = function (handle) {
       if (!self.options.itemHandleOptions.enabled) {
         return !!self.options.dragItems
-      }
+      } 
 
       if (self.options.itemHandleOptions.handleClass) {
         return handle.classList.contains(self.options.itemHandleOptions.handleClass)
@@ -186,6 +186,8 @@ var dragula = require('dragula');
       }
     }
 
+    
+
     this.addElement = function (boardID, element, position) {
       if (typeof position === 'undefined') {
         position = -1
@@ -271,6 +273,7 @@ var dragula = require('dragula');
         }
         //create node
         var boardNode = document.createElement('div')
+        var boardWrapper = document.createElement('div')
         boardNode.dataset.id = board.id
         boardNode.dataset.order = self.container.childNodes.length + 1
         boardNode.classList.add('kanban-board')
@@ -345,21 +348,24 @@ var dragula = require('dragula');
             'class',
             buttonClass ? buttonClass : 'kanban-title-button btn btn-default btn-xs'
           )
+          
           btn.appendChild(t)
           //var buttonHtml = '<button class="kanban-title-button btn btn-default btn-xs">'+buttonContent+'</button>'
-          if (buttonFooter) {
-            footerBoard.appendChild(btn)
-          } else {
-            headerBoard.appendChild(btn)
-          }
+          // if (buttonFooter) {
+          //   footerBoard.appendChild(btn)
+          // } else {
+          //   headerBoard.appendChild(btn)
+          // }
           __onButtonClickHandler(btn, board.id)
         }
         //board assembly
         boardNode.appendChild(headerBoard)
         boardNode.appendChild(contentBoard)
-        boardNode.appendChild(footerBoard)
+        boardNode.appendChild(footerBoard) 
         //board add
-        self.container.appendChild(boardNode)
+        boardWrapper.appendChild(boardNode)
+        boardWrapper.appendChild(btn)
+        self.container.appendChild(boardWrapper)
       }
       return self
     }

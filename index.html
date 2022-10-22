@@ -18,7 +18,7 @@
         padding: 0;
       }
 
-      #myKanban {
+      #dTrello {
         overflow-x: auto;
         padding: 20px 0;
       }
@@ -54,10 +54,9 @@
   </head>
   <body>
     <header>
-      <button id="addDefault">Adicionar novo quadro</button>
+      <button id="addNewBoard">Adicionar novo quadro</button>
       <input type="search" name="" id="">
-    </header>
-    <div id="myKanban"></div>
+    <div id="dTrello"></div>
     <!-- <br />
     <button id="addToDo">Add element in "To Do" Board</button>
     <br />
@@ -68,9 +67,11 @@
     <button id="removeElement">Remove "My Task Test"</button> -->
 
     <script src="./js/d-trello.js"></script>
+    <script src="drag_auto_scroll.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-      var KanbanTest = new dTrello({
-        element: "#myKanban",
+      var KanbanManager = new dTrello({
+        element: "#dTrello",
         gutter: "10px",
         widthBoard: "450px",
         itemHandleOptions:{
@@ -95,11 +96,11 @@
           formItem.innerHTML =
             '<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>';
 
-          KanbanTest.addForm(boardId, formItem);
+          KanbanManager.addForm(boardId, formItem);
           formItem.addEventListener("submit", function(e) {
             e.preventDefault();
             var text = e.target[0].value;
-            KanbanTest.addElement(boardId, {
+            KanbanManager.addElement(boardId, {
               title: text
             });
             formItem.parentNode.removeChild(formItem);
@@ -140,50 +141,50 @@
 
       // var toDoButton = document.getElementById("addToDo");
       // toDoButton.addEventListener("click", function() {
-      //   KanbanTest.addElement("_todo", {
+      //   KanbanManager.addElement("_todo", {
       //     title: "Test Add"
       //   });
       // });
 
       // var toDoButtonAtPosition = document.getElementById("addToDoAtPosition");
       // toDoButtonAtPosition.addEventListener("click", function() {
-      //   KanbanTest.addElement("_todo", {
+      //   KanbanManager.addElement("_todo", {
       //     title: "Test Add at Pos"
       //   }, 1);
       // });
 
-      var addBoardDefault = document.getElementById("addDefault");
+      var addBoardDefault = document.getElementById("addNewBoard");
       addBoardDefault.addEventListener("click", function() {
-        KanbanTest.addBoards([
+        Swal.fire({
+          title: 'Dê um nome ao novo quadro:',
+          input: 'text',
+          showCancelButton: true,
+          inputValue:""
+      }).then(boardName=>{
+        KanbanManager.addBoards([
           {
-            id: "_default",
-            title: "Kanban Default",
-            item: [
-              {
-                title: "Default Item"
-              },
-              {
-                title: "Default Item 2"
-              },
-              {
-                title: "Default Item 3"
-              }
-            ]
+            id: boardName.value,
+            title: boardName.value,
+            item: []
           }
         ]);
+      }) 
+
+
+        
       });
 
       // var removeBoard = document.getElementById("removeBoard");
       // removeBoard.addEventListener("click", function() {
-      //   KanbanTest.removeBoard("_done");
+      //   KanbanManager.removeBoard("_done");
       // });
 
       // var removeElement = document.getElementById("removeElement");
       // removeElement.addEventListener("click", function() {
-      //   KanbanTest.removeElement("_test_delete");
+      //   KanbanManager.removeElement("_test_delete");
       // });
 
-      var allEle = KanbanTest.getBoardElements("_todo");
+      var allEle = KanbanManager.getBoardElements("_todo");
       allEle.forEach(function(item, index) {
         //console.log(item);
       });
