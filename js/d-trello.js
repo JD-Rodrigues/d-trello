@@ -32,6 +32,12 @@ var dragula = require('dragula');
     this.drakeBoard = ''
     this.itemAddOptions = __DEFAULT_ITEM_ADD_OPTIONS
     this.itemHandleOptions = __DEFAULT_ITEM_HANDLE_OPTIONS
+    this.uuid = function() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+      });
+  }
     var defaults = {
       element: '',
       gutter: '15px',
@@ -191,7 +197,12 @@ var dragula = require('dragula');
       element && element.scrollIntoView();
     }
 
+    this.alert = function () {
+      console.log("Oiii")
+    }
+
     this.addElement = function (boardID, element, position) {
+      const uuid = this.uuid()
       if (typeof position === 'undefined') {
         position = -1
       }
@@ -201,6 +212,7 @@ var dragula = require('dragula');
       var refElement = board.childNodes[position]
       var nodeItem = document.createElement('div')
       nodeItem.classList.add('kanban-item')
+      nodeItem.setAttribute('id',`${uuid}`)
       if (typeof element.id !== 'undefined' && element.id !== '') {
         nodeItem.setAttribute('data-eid', element.id)
       }
@@ -210,6 +222,7 @@ var dragula = require('dragula');
         })
       }
       nodeItem.innerHTML = __buildItemCard(element)
+      nodeItem.querySelector('.ph-trash-fill').addEventListener('click',()=>document.getElementById(uuid).remove())
       //add function
       nodeItem.clickfn = element.click
       nodeItem.contextfn = element.context;
@@ -217,7 +230,7 @@ var dragula = require('dragula');
       nodeItem.dragendfn = element.dragend
       nodeItem.dropfn = element.drop
       __appendCustomProperties(nodeItem, element)
-      __onclickHandler(nodeItem)
+      // __onclickHandler(nodeItem)
       __onContextHandler(nodeItem)
       if (self.options.itemHandleOptions.enabled) {
         nodeItem.style.cursor = 'default'
@@ -334,7 +347,7 @@ var dragula = require('dragula');
           nodeItem.dropfn = itemKanban.drop
           __appendCustomProperties(nodeItem, itemKanban)
           //add click handler of item
-          __onclickHandler(nodeItem)
+          // __onclickHandler(nodeItem)
           __onContextHandler(nodeItem)
           if (self.options.itemHandleOptions.enabled) {
             nodeItem.style.cursor = 'default'
@@ -412,7 +425,7 @@ var dragula = require('dragula');
       nodeItem.dragendfn = element.dragend
       nodeItem.dropfn = element.drop
       __appendCustomProperties(nodeItem, element)
-      __onclickHandler(nodeItem)
+      // __onclickHandler(nodeItem)
       __onContextHandler(nodeItem)
       return self
     }

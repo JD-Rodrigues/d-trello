@@ -1,3 +1,7 @@
+.kanban-drag {
+  scroll-behavior: smooth;
+}
+
 .kanban-container {
   position: relative;
   box-sizing: border-box;
