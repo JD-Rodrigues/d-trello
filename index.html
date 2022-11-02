@@ -161,18 +161,20 @@
           showCancelButton: true,
           inputValue:""
       }).then(boardName=>{
-        KanbanManager.addBoards([
-          {
-            id: boardName.value,
-            title: boardName.value,
-            item: []
-          }
-        ]);
-      }) 
-
-
-        
+          KanbanManager.addBoards([
+            {
+              id: boardName.value,
+              title: boardName.value,
+              item: []
+            }
+          ]); 
+        })         
       });
+
+    
+      // const itens = document.querySelectorAll('.ph-trash-fill')
+      // console.log(itens)
+      // itens.forEach(item=>item.addEventListener('click', alert('oii')))
 
       // var removeBoard = document.getElementById("removeBoard");
       // removeBoard.addEventListener("click", function() {
@@ -186,8 +188,16 @@
 
       var allEle = KanbanManager.getBoardElements("_todo");
       allEle.forEach(function(item, index) {
-        //console.log(item);
+        // console.log(item);
       });
+
+      //This function receive a card element as argument and opens a confirm modal. If the confirm button is clicked, the card will be removed.
+      const confirmRemoveCard = (cardId) => {
+        Swal.fire({
+          title: 'Gostaria realmente de deletar este card?:',
+          showCancelButton: true,
+      }).then(button=>button.isConfirmed = true && cardId.remove())         
+      }
     </script>
   </body>
 </html>

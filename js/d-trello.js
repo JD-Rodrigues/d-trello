@@ -221,8 +221,14 @@ var dragula = require('dragula');
           nodeItem.classList.add(cl)
         })
       }
+      // A item card is created and inserted on selected board
       nodeItem.innerHTML = __buildItemCard(element)
-      nodeItem.querySelector('.ph-trash-fill').addEventListener('click',()=>document.getElementById(uuid).remove())
+      
+      //A listener is added to the item card. It is listening for a click event that will fire the confirmRemoveCard, declared in the script tag (index.html). The function receive the card element as argument and opens a confirm modal.If the confirm button is clicked, this card will be removed.
+      nodeItem.querySelector('.ph-trash-fill').addEventListener('click',()=>{
+        confirmRemoveCard(document.getElementById(uuid))
+      })
+      
       //add function
       nodeItem.clickfn = element.click
       nodeItem.contextfn = element.context;
