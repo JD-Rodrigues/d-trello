@@ -58,8 +58,8 @@
   </head>
   <body>
     <header>
-      <button id="addNewBoard">Adicionar novo quadro</button>
       <input type="search" name="" id="">
+    </header>
     <div id="dTrello"></div>
     <!-- <br />
     <button id="addToDo">Add element in "To Do" Board</button>
@@ -69,7 +69,7 @@
     <button id="removeBoard">Remove "Done" Board</button>
     <br />
     <button id="removeElement">Remove "My Task Test"</button> -->
-
+    <button id="addNewBoard">Adicionar novo quadro</button>
     <script src="./js/d-trello.js"></script>
     <script src="drag_auto_scroll.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -213,10 +213,10 @@
       //This function receive a card element as argument and opens a confirm modal. If the confirm button is clicked, the card will be removed.
       const confirmRemoveCard = (cardId) => {
         Swal.fire({
-          title: 'Gostaria realmente de deletar este card?:',
+          title: 'Gostaria realmente de deletar este card?',
           showCancelButton: true,
-      }).then(button=>button.isConfirmed = true && cardId.remove())         
-      }
+      }).then(button=> button.isConfirmed === true && cardId.remove())
+    }
     </script>
   </body>
 </html>
