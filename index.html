@@ -53,12 +53,16 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-      }      
+      } 
+      
+      .invisible {
+        display: none;
+      }
     </style>
   </head>
   <body>
     <header>
-      <input type="search" name="" id="">
+      <input type="search" name="" id="search" oninput=filterCards() />
     </header>
     <div id="dTrello"></div>
     <!-- <br />
@@ -163,6 +167,22 @@
       //     title: "Test Add at Pos"
       //   }, 1);
       // });
+
+      const filterCards = () => {
+        const search = document.querySelector('#search').value
+        const cards = document.querySelectorAll('.kanban-item')
+        cards.forEach(card => {
+          if(search){
+            if(!card.querySelector('.card_title').innerHTML.includes(search)) {
+            card.classList.add('invisible')
+            } else {
+              card.classList.remove('invisible')
+            }
+          } else {
+            card.classList.remove('invisible')
+          }
+        })
+      }
 
       const nameNewBoard = () => {
         Swal.fire({
