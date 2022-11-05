@@ -111,7 +111,8 @@
               formItem.parentNode.removeChild(formItem);
             } else {
               Swal.fire({
-                title: 'Insira um nome para o novo card!',          
+                title: 'Insira um nome para o novo card!',
+          
               })
             }
           });
@@ -177,7 +178,7 @@
                 KanbanManager.addBoards([
                   {
                     id: boardName.value,
-                    title: boardName.value,
+                    title: `${boardName.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`,
                     item: []
                   }
             ]); 
