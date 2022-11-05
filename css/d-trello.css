@@ -1,4 +1,4 @@
-.kanban-drag {
+.kanban-drag, #dTrello {
   scroll-behavior: smooth;
 }
 
