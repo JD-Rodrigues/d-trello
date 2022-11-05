@@ -157,24 +157,39 @@
       //   }, 1);
       // });
 
-      var addBoard = document.getElementById("addNewBoard");
-      addBoard.addEventListener("click", function() {
+      const nameNewBoard = () => {
         Swal.fire({
           title: 'Dê um nome ao novo quadro:',
           input: 'text',
           showCancelButton: true,
           inputValue:""
       }).then(boardName=>{
-          KanbanManager.addBoards([
-            {
-              id: boardName.value,
-              title: boardName.value,
-              item: []
-            }
-          ]); 
+          if(boardName.value === "") {
+            nameNewBoard()
+          } else {
+              if(boardName.isConfirmed === true) {
+                KanbanManager.addBoards([
+                  {
+                    id: boardName.value,
+                    title: boardName.value,
+                    item: []
+                  }
+            ]); 
+              }
+          }
         })         
-      });
+      }
 
+      var addBoard = document.getElementById("addNewBoard");
+      addBoard.addEventListener("click", nameNewBoard);
+
+      // KanbanManager.addBoards([
+      //       {
+      //         id: boardName.value,
+      //         title: boardName.value,
+      //         item: []
+      //       }
+      //     ]); 
     
       // const itens = document.querySelectorAll('.ph-trash-fill')
       // console.log(itens)
