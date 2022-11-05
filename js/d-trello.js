@@ -37,7 +37,11 @@ var dragula = require('dragula');
           var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
           return v.toString(16);
       });
-  }
+    }
+    this.scrollToBottom = function(target) {
+      const element = document.querySelector(target)
+      element && element.scrollIntoView();
+    }
     var defaults = {
       element: '',
       gutter: '15px',
@@ -192,11 +196,6 @@ var dragula = require('dragula');
       }
     }
 
-    function scrollToBottom() {
-      const element = document.querySelector('.form-control')
-      element && element.scrollIntoView();
-    }
-
     this.alert = function () {
       console.log("Oiii")
     }
@@ -299,6 +298,7 @@ var dragula = require('dragula');
         boardNode.dataset.id = board.id
         boardNode.dataset.order = self.container.childNodes.length + 1
         boardNode.classList.add('kanban-board')
+
         //set style
         if (self.options.responsivePercentage) {
           boardNode.style.width = boardWidth + '%'
@@ -371,7 +371,7 @@ var dragula = require('dragula');
             buttonClass ? buttonClass : 'kanban-title-button btn btn-default btn-xs'
           )
           btn.addEventListener('click',()=>setTimeout(()=>{
-            scrollToBottom()
+            this.scrollToBottom('.form-control')
           },10))
           btn.appendChild(t)
           //var buttonHtml = '<button class="kanban-title-button btn btn-default btn-xs">'+buttonContent+'</button>'
