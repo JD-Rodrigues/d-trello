@@ -104,10 +104,16 @@
           formItem.addEventListener("submit", function(e) {
             e.preventDefault();
             var text = e.target[0].value;
-            KanbanManager.addElement(boardId, {
+            if (text) {
+              KanbanManager.addElement(boardId, {
               title: text
             });
-            formItem.parentNode.removeChild(formItem);
+              formItem.parentNode.removeChild(formItem);
+            } else {
+              Swal.fire({
+                title: 'Insira um nome para o novo card!',          
+              })
+            }
           });
           document.getElementById("CancelBtn").onclick = function() {
             formItem.parentNode.removeChild(formItem);
