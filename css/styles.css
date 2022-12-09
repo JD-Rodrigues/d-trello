@@ -178,3 +178,50 @@
 .drag_handler_icon:after {
     bottom: 6px;
 }
+
+body {
+  font-family: "Lato";
+  margin: 0;
+  padding: 0;
+}
+
+#dTrello {
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.kanban-board-header {
+   background-color: grey;
+}
+
+.success {
+  background: #00b961;
+}
+
+.info {
+  background: #2a92bf;
+}
+
+.warning {
+  background: #f4ce46;
+}
+
+.error {
+  background: #fb7d44;
+}
+
+.custom-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+} 
+
+.invisible {
+  display: none;
+}

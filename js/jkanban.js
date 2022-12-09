@@ -5,7 +5,7 @@
 var dragula = require('dragula');
 
 (function () {
-  this.dTrello = function () {
+  this.jkanban = function () {
     var self = this
     var __DEFAULT_ITEM_HANDLE_OPTIONS = {
       enabled: false
