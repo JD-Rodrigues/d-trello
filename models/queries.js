@@ -113,13 +113,13 @@ const update = (table, id, info) => {
     keys.forEach((key,index)=> {
       switch (index) {
         case 0:
-          columns = `${key} = ?,`;
+          columns = `${key} = ?, `;
           break;
         case keys.length - 1:
           columns += `${key} = ?`;
           break;
         default:
-          columns += `${key} = ?,`
+          columns += `${key} = ?, `
       }
     })
     // const query = `UPDATE people2.contacts3 SET ${columns} WHERE id = ${id}`
@@ -179,3 +179,5 @@ const remove = (table, id) => {
   })
 }
 
+// create('tasks', {title: 'tomar água', board_id:1, task_order:4})
+module.exports = {create, read, update, remove}
