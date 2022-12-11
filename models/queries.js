@@ -110,18 +110,22 @@ const update = (table, id, info) => {
     const keys = Object.keys(info)
     const values = Object.values(info)
     let columns;
-    keys.forEach((key,index)=> {
-      switch (index) {
-        case 0:
-          columns = `${key} = ?, `;
-          break;
-        case keys.length - 1:
-          columns += `${key} = ?`;
-          break;
-        default:
-          columns += `${key} = ?, `
-      }
-    })
+    if(keys.length === 1) {
+      columns = keys[0]
+    } else {
+      keys.forEach((key,index)=> {
+        switch (index) {
+          case 0:
+            columns = `${key} = ?, `;
+            break;
+          case keys.length - 1:
+            columns += `${key} = ?`;
+            break;
+          default:
+            columns += `${key} = ?, `
+        }
+      })
+    }
     // const query = `UPDATE people2.contacts3 SET ${columns} WHERE id = ${id}`
     conn.query(`UPDATE d_trello.${table} SET ${columns} WHERE id = ${id}`, values, (err, res, meta) => {
       if(err) {
@@ -180,4 +184,5 @@ const remove = (table, id) => {
 }
 
 // create('tasks', {title: 'tomar água', board_id:1, task_order:4})
+// update('tasks', 12, {title: "acordar", board_id: 2})
 module.exports = {create, read, update, remove}

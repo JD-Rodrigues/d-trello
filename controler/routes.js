@@ -38,7 +38,7 @@ router.put('/tasks/:id', async (req, res)=> {
 })
 
 router.delete('/boards/:id', async (req, res)=> {
-  await remove('boards', req.params.id )
+  remove('boards', req.params.id )
   res.send(`status: ${res.statusMessage}`)
 })
 
