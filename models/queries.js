@@ -185,5 +185,5 @@ const remove = (table, id) => {
 }
 
 // create('tasks', {title: 'tomar água', board_id:1, task_order:4})
-update('tasks', 15, {title: 'Fazer checklist do dia seguinte'})
+// update('tasks', 15, {title: 'Fazer checklist do dia seguinte'})
 module.exports = {create, read, update, remove}
