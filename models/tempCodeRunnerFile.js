@@ -1,1 +1,1 @@
-update('tasks', 9, {title: "Baguncinha", board_id: 4, task_order:18})
+update('tasks', 10, {title: "Alimentar os bichos", board_id:3})
