@@ -1,3 +1,27 @@
+
+
+let allBoards = []
+
+const getData = async () => {
+  const data = await readData('boards')
+  return await data.map(board => {
+    return {
+      id: `_todo`,
+      title: board.title,
+      class: board.class,
+      dragTo: [],
+    }
+  } )
+}
+
+// window.addEventListener('load', getData)
+
+
+
+
+
+// getData()
+
 var KanbanManager = new jkanban({
   element: "#dTrello",
   gutter: "10px",
@@ -50,29 +74,19 @@ var KanbanManager = new jkanban({
     class: 'custom-button',
     footer: true
   },
-  boards: [
-    {
-      id: "_todo",
-      title: "A fazer <i class='ph-pencil-fill'></i>",
-      class: "info,good",
-      dragTo: ["_working"],
-      item: []
-    },
-    {
-      id: "_working",
-      title: "Fazendo <i class='ph-pencil-fill'></i>",
-      class: "warning",
-      item: []
-    },
-    {
-      id: "_done",
-      title: "Feito <i class='ph-pencil-fill'></i>",
-      class: "success",
-      dragTo: ["_working"],
-      item: []
-    }
-  ]
+  boards: getData().then(data=> data)
+  
+  // [
+  //   {
+  //     id: `_todo`,
+  //     title: "A fazer <i class='ph-pencil-fill'></i>",
+  //     class: "info,good",
+  //     dragTo: [],
+  //   },
+  // ]
 });
+
+// window.addEventListener('load', ()=>)
 
 // var toDoButton = document.getElementById("addToDo");
 // toDoButton.addEventListener("click", function() {
@@ -167,3 +181,4 @@ const confirmRemoveCard = (cardId) => {
     showCancelButton: true,
 }).then(button=> button.isConfirmed === true && cardId.remove())
 }
+

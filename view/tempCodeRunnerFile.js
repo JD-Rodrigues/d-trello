@@ -1,1 +1,1 @@
-createData('tasks', {title: "Checar e-mails", board_id:1, task_order: 9})
+readData('boards').then(data=>console.log(data))
