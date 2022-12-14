@@ -1,90 +1,161 @@
 
 
-let allBoards = []
 
 const getData = async () => {
   const data = await readData('boards')
-  return await data.map(board => {
-    return {
-      id: `_todo`,
-      title: board.title,
-      class: board.class,
-      dragTo: [],
-    }
-  } )
+  let boards = []
+  for (let board in await data) {
+    boards.push(
+      {
+        id: `_todo${data[board].id}`,
+        title: data[board].title,
+        class: data[board].class,
+        dragTo: [],
+      }
+    )
+  }
+  InstanceKanban(boards)
+  
 }
 
-// window.addEventListener('load', getData)
+window.addEventListener('load', getData)
 
-
-
+var InstanceKanban = (allBoards) => {
+  const KanbanManager = new jkanban({
+    element: "#dTrello",
+    gutter: "10px",
+    widthBoard: "450px",
+    itemHandleOptions:{
+      enabled: true,
+    },
+    click: function(el) {
+      console.log("Trigger on all items click!");
+    },
+    context: function(el, e) {
+      console.log("Trigger on all items right-click!");
+    },
+    dropEl: function(el, target, source, sibling){
+      console.log(target.parentElement.getAttribute('data-id'));
+      console.log(el, target, source, sibling)
+    },
+    buttonClick: function(el, boardId) {
+      console.log(el);
+      console.log(boardId);
+      // create a form to enter element
+      var formItem = document.createElement("form");
+      formItem.setAttribute("class", "itemform");
+      formItem.innerHTML =
+        `<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>`;
+  
+      KanbanManager.addForm(boardId, formItem);
+      formItem.addEventListener("submit", function(e) {
+        e.preventDefault();
+        var text = e.target[0].value;
+        if (text) {
+          KanbanManager.addElement(boardId, {
+          title: text
+        });
+          formItem.parentNode.removeChild(formItem);
+        } else {
+          Swal.fire({
+            title: 'Insira um nome para o novo card!',
+      
+          })
+        }
+      });
+      document.getElementById("CancelBtn").onclick = function() {
+        formItem.parentNode.removeChild(formItem);
+      };
+      
+    },
+    itemAddOptions: {
+      enabled: true,
+      content: '+ Add New Card',
+      class: 'custom-button',
+      footer: true
+    },   
+    
+    boards:allBoards
+    
+  })
+  var allEle = KanbanManager.getBoardElements("_todo");
+}
 
 
 // getData()
 
-var KanbanManager = new jkanban({
-  element: "#dTrello",
-  gutter: "10px",
-  widthBoard: "450px",
-  itemHandleOptions:{
-    enabled: true,
-  },
-  click: function(el) {
-    console.log("Trigger on all items click!");
-  },
-  context: function(el, e) {
-    console.log("Trigger on all items right-click!");
-  },
-  dropEl: function(el, target, source, sibling){
-    console.log(target.parentElement.getAttribute('data-id'));
-    console.log(el, target, source, sibling)
-  },
-  buttonClick: function(el, boardId) {
-    console.log(el);
-    console.log(boardId);
-    // create a form to enter element
-    var formItem = document.createElement("form");
-    formItem.setAttribute("class", "itemform");
-    formItem.innerHTML =
-      `<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>`;
+//  const KanbanManager = new jkanban(
+//   config
+  //{
+//   element: "#dTrello",
+//   gutter: "10px",
+//   widthBoard: "450px",
+//   itemHandleOptions:{
+//     enabled: true,
+//   },
+//   click: function(el) {
+//     console.log("Trigger on all items click!");
+//   },
+//   context: function(el, e) {
+//     console.log("Trigger on all items right-click!");
+//   },
+//   dropEl: function(el, target, source, sibling){
+//     console.log(target.parentElement.getAttribute('data-id'));
+//     console.log(el, target, source, sibling)
+//   },
+//   buttonClick: function(el, boardId) {
+//     console.log(el);
+//     console.log(boardId);
+//     // create a form to enter element
+//     var formItem = document.createElement("form");
+//     formItem.setAttribute("class", "itemform");
+//     formItem.innerHTML =
+//       `<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>`;
 
-    KanbanManager.addForm(boardId, formItem);
-    formItem.addEventListener("submit", function(e) {
-      e.preventDefault();
-      var text = e.target[0].value;
-      if (text) {
-        KanbanManager.addElement(boardId, {
-        title: text
-      });
-        formItem.parentNode.removeChild(formItem);
-      } else {
-        Swal.fire({
-          title: 'Insira um nome para o novo card!',
+//     KanbanManager.addForm(boardId, formItem);
+//     formItem.addEventListener("submit", function(e) {
+//       e.preventDefault();
+//       var text = e.target[0].value;
+//       if (text) {
+//         KanbanManager.addElement(boardId, {
+//         title: text
+//       });
+//         formItem.parentNode.removeChild(formItem);
+//       } else {
+//         Swal.fire({
+//           title: 'Insira um nome para o novo card!',
     
-        })
-      }
-    });
-    document.getElementById("CancelBtn").onclick = function() {
-      formItem.parentNode.removeChild(formItem);
-    };
-  },
-  itemAddOptions: {
-    enabled: true,
-    content: '+ Add New Card',
-    class: 'custom-button',
-    footer: true
-  },
-  boards: getData().then(data=> data)
+//         })
+//       }
+//     });
+//     document.getElementById("CancelBtn").onclick = function() {
+//       formItem.parentNode.removeChild(formItem);
+//     };
+    
+//   },
+//   itemAddOptions: {
+//     enabled: true,
+//     content: '+ Add New Card',
+//     class: 'custom-button',
+//     footer: true
+//   },
+ 
   
-  // [
-  //   {
-  //     id: `_todo`,
-  //     title: "A fazer <i class='ph-pencil-fill'></i>",
-  //     class: "info,good",
-  //     dragTo: [],
-  //   },
-  // ]
-});
+//   boards: allBoards
+  
+  
+//   // [
+//   //   {
+//   //     id: `_todo`,
+//   //     title: "A fazer <i class='ph-pencil-fill'></i>",
+//   //     class: "info,good",
+//   //     dragTo: [],
+//   //   },
+//   // ],
+ //}
+ //);
+
+
 
 // window.addEventListener('load', ()=>)
 
@@ -169,10 +240,7 @@ addBoard.addEventListener("click", nameNewBoard);
 //   KanbanManager.removeElement("_test_delete");
 // });
 
-var allEle = KanbanManager.getBoardElements("_todo");
-allEle.forEach(function(item, index) {
-  // console.log(item);
-});
+
 
 //This function receive a card element as argument and opens a confirm modal. If the confirm button is clicked, the card will be removed.
 const confirmRemoveCard = (cardId) => {

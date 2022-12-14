@@ -370,6 +370,7 @@ var dragula = require('dragula');
             'class',
             buttonClass ? buttonClass : 'kanban-title-button btn btn-default btn-xs'
           )
+        
           btn.addEventListener('click',()=>setTimeout(()=>{
             this.scrollToBottom('.form-control')
           },10))
@@ -445,7 +446,10 @@ var dragula = require('dragula');
       var board = self.element.querySelector(
         '[data-id="' + id + '"] .kanban-drag'
       )
+      
+      
       return board.childNodes
+      
     }
 
     this.removeElement = function (el) {

@@ -1,1 +1,1 @@
-readData('boards').then(data=>console.log(data))
+updateData('boards', 24, {class: "success"})
