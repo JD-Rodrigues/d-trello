@@ -620,7 +620,7 @@ var dragula = require('dragula');
                   customItemLayout = '';
               }
 
-              result = '<div class=\'item_handle ' + customCssHandler + '\'><i class=\'item_handle ' + customCssIconHandler + '\'></i></div><div><span class="card_title">' + result + '</span><i class="ph-trash-fill"></i></div>'
+              result = '<div class=\'item_handle ' + customCssHandler + '\'><i class=\'item_handle ' + customCssIconHandler + '\'></i></div><div><span class="card_title">' + result + '</span><i class="ph-pencil-fill"></i><i class="ph-trash-fill"></i></div>'
           } else {
               result = '<div> ' + self.options.itemHandleOptions.customHandler.replace(/%([^%]+)%/g, function (match, key) 
                       { return item[key] !== undefined ? item[key] : '' }) + ' </div>'

@@ -32,7 +32,7 @@ const deleteData = async (route, id) => {
   })
 }
 
-// createData('tasks', {title: "Checar e-mails", board_id:1, task_order: 9})
+// createData('tasks', {title: "Almoçar", board_id:1, task_order: 4})
 // createData('boards', {title: "Feito <i class='ph-pencil-fill'></i>", board_order:3, class:'default'})
 // updateData('boards', 24, {class: "success"})
 // deleteData('boards', 25)

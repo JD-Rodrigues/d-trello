@@ -1,1 +1,1 @@
-updateData('boards', 24, {class: "success"})
+createData('tasks', {title: "Almoçar", board_id:1, task_order: 4})

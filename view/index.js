@@ -1,24 +1,28 @@
 const getData = async () => {
-  const data = await readData('boards')
+  
+  const dataBoards = await readData('boards')
+  const dataTasks = await readData('tasks')
   let boards = []
-  for (let board in await data) {
+  let tasks = []
+  for (let board in await dataBoards) {
     boards.push(
       {
-        id: `_todo${data[board].id}`,
-        title: data[board].title,
-        class: data[board].class,
+        id: `_todo${dataBoards[board].id}`,
+        title: dataBoards[board].title,
+        class: dataBoards[board].class,
         dragTo: [],
       }
     )
   }
-  InstanceKanban(boards)
+  InstanceKanban(boards, await dataTasks, dataBoards)
   
 }
 
 window.addEventListener('load', getData)
 
-var InstanceKanban = (allBoards) => {
-  const KanbanManager = new jkanban({
+var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
+  
+  var KanbanManager = await new jkanban({
     element: "#dTrello",
     gutter: "10px",
     widthBoard: "450px",
@@ -74,8 +78,22 @@ var InstanceKanban = (allBoards) => {
     
     boards:allBoards
     
-  })
+  })  
+
+  const renderTasks = () => {
+    allBoards.forEach(board => {
+      allTasks.forEach(task => {
+        if(board.id === `_todo${task.board_id}`) {
+          KanbanManager.addElement(board.id, task)
+        }
+      })
+    })
+  }
+
+  renderTasks()
+  
   var allEle = KanbanManager.getBoardElements("_todo");
+  
 }
 
 const filterCards = () => {
