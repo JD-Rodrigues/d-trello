@@ -32,12 +32,6 @@ var dragula = require('dragula');
     this.drakeBoard = ''
     this.itemAddOptions = __DEFAULT_ITEM_ADD_OPTIONS
     this.itemHandleOptions = __DEFAULT_ITEM_HANDLE_OPTIONS
-    this.uuid = function() {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-          return v.toString(16);
-      });
-    }
     this.scrollToBottom = function(target) {
       const element = document.querySelector(target)
       element && element.scrollIntoView();
@@ -201,7 +195,6 @@ var dragula = require('dragula');
     }
 
     this.addElement = function (boardID, element, position) {
-      const uuid = this.uuid()
       if (typeof position === 'undefined') {
         position = -1
       }
@@ -211,7 +204,6 @@ var dragula = require('dragula');
       var refElement = board.childNodes[position]
       var nodeItem = document.createElement('div')
       nodeItem.classList.add('kanban-item')
-      nodeItem.setAttribute('id',`${uuid}`)
       if (typeof element.id !== 'undefined' && element.id !== '') {
         nodeItem.setAttribute('data-eid', element.id)
       }
@@ -225,7 +217,7 @@ var dragula = require('dragula');
       
       //A listener is added to the item card. It is listening for a click event that will fire the confirmRemoveCard, declared in the script tag (index.html). The function receive the card element as argument and opens a confirm modal.If the confirm button is clicked, this card will be removed.
       nodeItem.querySelector('.ph-trash-fill').addEventListener('click',()=>{
-        confirmRemoveCard(document.getElementById(uuid))
+        confirmRemoveCard(element.id)
       })
       
       //add function
@@ -296,6 +288,7 @@ var dragula = require('dragula');
         var boardNode = document.createElement('div')
         var boardWrapper = document.createElement('div')
         boardNode.dataset.id = board.id
+        boardNode.id = board.idNumber
         boardNode.dataset.order = self.container.childNodes.length + 1
         boardNode.classList.add('kanban-board')
 

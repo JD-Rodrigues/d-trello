@@ -8,6 +8,7 @@ const getData = async () => {
     boards.push(
       {
         id: `_todo${dataBoards[board].id}`,
+        idNumber: dataBoards[board].id,
         title: dataBoards[board].title,
         class: dataBoards[board].class,
         dragTo: [],
@@ -84,7 +85,7 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
   const renderTasks = () => {
     allBoards.forEach(board => {
       allTasks.forEach(task => {
-        if(board.id === `_todo${task.board_id}`) {
+        if(board.idNumber === task.board_id) {
           KanbanManager.addElement(board.id, task)
         }
       })
@@ -155,6 +156,10 @@ const confirmRemoveCard = (cardId) => {
   Swal.fire({
     title: 'Gostaria realmente de deletar este card?',
     showCancelButton: true,
-}).then(button=> button.isConfirmed === true && cardId.remove())
+}).then(button=> {
+  if(button.isConfirmed === true){
+  deleteData('tasks', cardId).then(getData)
+}
+ } )
 }
 
