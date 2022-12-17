@@ -14,6 +14,7 @@ const getData = async () => {
       }
     )
   }
+  document.querySelector('#dTrello').innerHTML=""
   InstanceKanban(boards, await dataTasks, dataBoards)
   
 }
@@ -124,15 +125,23 @@ const nameNewBoard = () => {
     } else {
         if(boardName.isConfirmed === true) {
           const container = document.querySelector('#dTrello')
-          KanbanManager.addBoards([
+          readData('boards').then(boards => {
+            createData('boards',
             {
-              id: boardName.value,
               title: `${boardName.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`,
-              item: []
+              class: 'default',
+              board_order: boards.length + 1
             }
-          ]); 
+          ).then(data => getData().then(
+            setTimeout(()=>{
+              container.scrollLeft = container.scrollWidth
+            },400)
+          )); 
+          })
           
-          container.scrollLeft = container.scrollWidth
+          
+          
+          
         }
     }
   })         
