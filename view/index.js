@@ -54,10 +54,10 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
       formItem.addEventListener("submit", function(e) {
         e.preventDefault();
         var text = e.target[0].value;
+        const boardId = e.target.closest('.kanban-drag').closest('.kanban-board').id
+        
         if (text) {
-          KanbanManager.addElement(boardId, {
-          title: text
-        });
+          createData('tasks', {title: text, board_id:boardId, task_order:8}).then(getData)
           formItem.parentNode.removeChild(formItem);
         } else {
           Swal.fire({
