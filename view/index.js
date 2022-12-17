@@ -80,7 +80,16 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
     
     boards:allBoards
     
-  })  
+  })
+
+  //Iterate over each trash icon of the boards, adding a listener that fires a deletion function, passing the board's id as argument.
+  document.querySelectorAll('.kanban-title-board .ph-trash-fill').forEach(trashIcon=> trashIcon.addEventListener('click',()=>{
+
+    const board = trashIcon.closest('.kanban-title-board').closest('.kanban-board-header').closest('.kanban-board')
+
+    confirmRemoveBoard(board.id)
+
+  }))  
 
   const renderTasks = () => {
     allBoards.forEach(board => {
@@ -93,6 +102,8 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
   }
 
   renderTasks()
+
+  
   
   var allEle = KanbanManager.getBoardElements("_todo");
   
@@ -151,6 +162,17 @@ const nameNewBoard = () => {
 var addBoard = document.getElementById("addNewBoard");
 addBoard.addEventListener("click", nameNewBoard);
 
+const confirmRemoveBoard = (boardId) => {
+  Swal.fire({
+    title: 'Gostaria realmente de deletar este quadro?',
+    showCancelButton: true,
+}).then(button=> {
+  if(button.isConfirmed === true){
+  deleteData('boards', boardId).then(getData)
+}
+ } )
+}
+
 //This function receive a card element as argument and opens a confirm modal. If the confirm button is clicked, the card will be removed.
 const confirmRemoveCard = (cardId) => {
   Swal.fire({
@@ -162,4 +184,6 @@ const confirmRemoveCard = (cardId) => {
 }
  } )
 }
+
+
 

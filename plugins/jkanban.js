@@ -376,6 +376,7 @@ var dragula = require('dragula');
           // }
           __onButtonClickHandler(btn, board.id)
         }
+        
         //board assembly
         boardNode.appendChild(headerBoard)
         boardNode.appendChild(contentBoard)
