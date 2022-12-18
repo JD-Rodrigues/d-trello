@@ -16,8 +16,7 @@ const getData = async () => {
     )
   }
   document.querySelector('#dTrello').innerHTML=""
-  InstanceKanban(boards, await dataTasks, dataBoards)
-  
+  InstanceKanban(boards, await dataTasks, dataBoards)  
 }
 
 window.addEventListener('load', getData)
@@ -82,6 +81,11 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
     
   })
 
+  document.querySelectorAll('.kanban-board-header').forEach(header=> header.innerHTML += `<input type="text" class="kanban-title-input">`)
+
+  document.querySelectorAll('.kanban-board-header .ph-pencil-fill').forEach(     pencilIcon=> pencilIcon.addEventListener('click',  showHideInputEdit)) 
+
+  
   //Iterate over each trash icon of the boards, adding a listener that fires a deletion function, passing the board's id as argument.
   document.querySelectorAll('.kanban-title-board .ph-trash-fill').forEach(trashIcon=> trashIcon.addEventListener('click',()=>{
 
@@ -89,7 +93,7 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
 
     confirmRemoveBoard(board.id)
 
-  }))  
+  }))
 
   const renderTasks = () => {
     allBoards.forEach(board => {
@@ -102,8 +106,6 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
   }
 
   renderTasks()
-
-  
   
   var allEle = KanbanManager.getBoardElements("_todo");
   
@@ -183,6 +185,31 @@ const confirmRemoveCard = (cardId) => {
   deleteData('tasks', cardId).then(getData)
 }
  } )
+}
+
+const showHideInputEdit = (e) => {
+  const title = e.target.closest('.kanban-title-board')
+  const id = title.closest('.kanban-board-header').closest('.kanban-board').id
+  const input = e.target.closest('.kanban-title-board').closest('.kanban-board-header').querySelector('.kanban-title-input')
+  console.log(id)
+  title.style.display = 'none'
+  input.style.display = 'inline'
+  input.value = title.innerText
+
+  input.addEventListener('keyup', (event) => {
+    if (event.keyCode ===13) {
+      if(id == 6 || id == 7 || id == 24) {
+        updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'>`});
+        title.innerHTML = `${input.value}<i class='ph-pencil-fill'>`;
+      }else {
+        updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`});
+        title.innerHTML = `${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`;        
+      }
+
+      title.style.display = 'inline';
+      input.style.display = 'none';
+    }
+  })
 }
 
 

@@ -313,6 +313,14 @@ var dragula = require('dragula');
         })
         headerBoard.innerHTML =
           '<div class="kanban-title-board">' + board.title + '</div>'
+
+        // headerBoard.innerHTML += `<input type="text" class="kanban-title-input">`
+        
+        // headerBoard.querySelector('.ph-pencil-fill').addEventListener('click', showHideInputEdit)
+        // const inputEdit = document.createElement('input')
+        // inputEdit.setAttribute('type', 'text')
+        // inputEdit.classList.add('kanban-title-input')
+        // headerBoard.appendChild(inputEdit)
         //content board
         var contentBoard = document.createElement('main')
         contentBoard.classList.add('kanban-drag')

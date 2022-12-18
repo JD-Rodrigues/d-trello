@@ -56,11 +56,22 @@
   padding: 15px;
 }
 
-.kanban-board header .kanban-title-board {
+.kanban-board header .kanban-title-board, .kanban-board header input {
+  width: 100%;
+  outline: none;
+  border: none;
   font-weight: 700;
   margin: 0;
   padding: 0;
   display: inline;
+}
+
+.kanban-board header .kanban-title-board {
+  /* display: none; */
+}
+
+.kanban-board header input {
+  display: none;
 }
 
 .kanban-board header .kanban-title-button {
