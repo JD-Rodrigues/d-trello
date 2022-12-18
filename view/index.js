@@ -83,7 +83,9 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
 
   document.querySelectorAll('.kanban-board-header').forEach(header=> header.innerHTML += `<input type="text" class="kanban-title-input">`)
 
-  document.querySelectorAll('.kanban-board-header .ph-pencil-fill').forEach(     pencilIcon=> pencilIcon.addEventListener('click',  showHideInputEdit)) 
+  
+
+  addEventToEditName()
 
   
   //Iterate over each trash icon of the boards, adding a listener that fires a deletion function, passing the board's id as argument.
@@ -109,6 +111,10 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
   
   var allEle = KanbanManager.getBoardElements("_todo");
   
+}
+
+const addEventToEditName = () => {
+  document.querySelectorAll('.kanban-board-header .ph-pencil-fill').forEach(     pencilIcon=> pencilIcon.addEventListener('click',  showHideInputEdit)) 
 }
 
 const filterCards = () => {
@@ -196,7 +202,8 @@ const showHideInputEdit = (e) => {
   input.style.display = 'inline'
   input.value = title.innerText
 
-  input.addEventListener('keyup', (event) => {
+  input.addEventListener('keyup', (event)=> {
+
     if (event.keyCode ===13) {
       if(id == 6 || id == 7 || id == 24) {
         updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'>`});
@@ -208,8 +215,28 @@ const showHideInputEdit = (e) => {
 
       title.style.display = 'inline';
       input.style.display = 'none';
+      addEventToEditName()
+      
     }
   })
+
+  // document.addEventListener('click', (e)=> {
+  //   const clickInside = input.contains(e.target)
+  //   if(!clickInside) {
+  //     if(id == 6 || id == 7 || id == 24) {
+  //       updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'>`});
+  //       title.innerHTML = `${input.value}<i class='ph-pencil-fill'>`;
+  //     }else {
+  //       updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`});
+  //       title.innerHTML = `${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`;        
+  //     }
+
+  //     title.style.display = 'inline';
+  //     input.style.display = 'none';
+  //     addEventToEditName()
+  //   }
+  // })
+  
 }
 
 
