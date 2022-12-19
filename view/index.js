@@ -157,8 +157,7 @@ const nameNewBoard = () => {
               container.scrollLeft = container.scrollWidth
             },400)
           )); 
-          })
-          
+          })        
           
           
           
@@ -193,14 +192,28 @@ const confirmRemoveCard = (cardId) => {
  } )
 }
 
+// Set display "none" for all inputs in the boards' title and restore the initial condition to the titles: display "inline".
+const hideAllInputs = () => {
+  document.querySelectorAll('.kanban-title-input').forEach(input => {
+    input.style.display = 'none'
+  })
+
+  document.querySelectorAll('.kanban-title-board').forEach(input => {
+    input.style.display = 'inline'
+  })
+}
+
 const showHideInputEdit = (e) => {
   const title = e.target.closest('.kanban-title-board')
   const id = title.closest('.kanban-board-header').closest('.kanban-board').id
   const input = e.target.closest('.kanban-title-board').closest('.kanban-board-header').querySelector('.kanban-title-input')
-  console.log(id)
+  
+  hideAllInputs()
   title.style.display = 'none'
   input.style.display = 'inline'
   input.value = title.innerText
+
+  
 
   input.addEventListener('keyup', (event)=> {
 
@@ -220,22 +233,8 @@ const showHideInputEdit = (e) => {
     }
   })
 
-  // document.addEventListener('click', (e)=> {
-  //   const clickInside = input.contains(e.target)
-  //   if(!clickInside) {
-  //     if(id == 6 || id == 7 || id == 24) {
-  //       updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'>`});
-  //       title.innerHTML = `${input.value}<i class='ph-pencil-fill'>`;
-  //     }else {
-  //       updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`});
-  //       title.innerHTML = `${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`;        
-  //     }
+  
 
-  //     title.style.display = 'inline';
-  //     input.style.display = 'none';
-  //     addEventToEditName()
-  //   }
-  // })
   
 }
 
