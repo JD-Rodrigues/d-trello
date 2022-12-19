@@ -241,11 +241,15 @@ var dragula = require('dragula');
         '[data-id="' + boardID + '"] .kanban-drag'
       )
       var _attribute = formItem.getAttribute('class')
+
       formItem.setAttribute('class', _attribute + ' not-draggable')
-      formItem.onclick = function() {
+
+      formItem.querySelector('#CancelBtn').onclick = function() {
         formItem.parentNode.removeChild(formItem);
       };
+
       board.appendChild(formItem)
+
       return self
     }
 
