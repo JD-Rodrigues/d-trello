@@ -242,6 +242,9 @@ var dragula = require('dragula');
       )
       var _attribute = formItem.getAttribute('class')
       formItem.setAttribute('class', _attribute + ' not-draggable')
+      formItem.onclick = function() {
+        formItem.parentNode.removeChild(formItem);
+      };
       board.appendChild(formItem)
       return self
     }
@@ -372,7 +375,7 @@ var dragula = require('dragula');
             buttonClass ? buttonClass : 'kanban-title-button btn btn-default btn-xs'
           )
         
-          btn.addEventListener('click',()=>setTimeout(()=>{
+          btn.addEventListener('click', async ()=>setTimeout(()=>{
             this.scrollToBottom('.form-control')
           },10))
           btn.appendChild(t)
