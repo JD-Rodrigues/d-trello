@@ -89,8 +89,8 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
 
   
   //Iterate over each trash icon of the boards, adding a listener that fires a deletion function, passing the board's id as argument.
-  document.querySelectorAll('.kanban-title-board .ph-trash-fill').forEach(trashIcon=> trashIcon.addEventListener('click',()=>{
-
+  document.querySelectorAll('.kanban-title-board .ph-trash-fill').forEach(trashIcon=> trashIcon.addEventListener('click',(e)=>{
+    e.stopPropagation()
     const board = trashIcon.closest('.kanban-title-board').closest('.kanban-board-header').closest('.kanban-board')
 
     confirmRemoveBoard(board.id)
@@ -105,6 +105,8 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
         }
       })
     })
+
+    addEventToEditName()
   }
 
   renderTasks()
@@ -114,7 +116,12 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
 }
 
 const addEventToEditName = () => {
-  document.querySelectorAll('.kanban-board-header .ph-pencil-fill').forEach(     pencilIcon=> pencilIcon.addEventListener('click',  showHideInputEdit)) 
+  document.querySelectorAll('.kanban-board-header .ph-pencil-fill').forEach(     pencilIcon=> pencilIcon.addEventListener('click',  showHideInputEditBoard)) 
+
+  document.querySelectorAll('.kanban-item .ph-pencil-fill').forEach(pencilIcon=> pencilIcon.addEventListener('click', showHideInputEditTask )) 
+  
+
+  
 }
 
 const filterCards = () => {
@@ -202,12 +209,20 @@ const hideAllInputs = () => {
     input.style.display = 'inline'
   })
 
+  document.querySelectorAll('.title-edit-input').forEach(input => {
+    input.style.display = 'none'
+  })
+
+  document.querySelectorAll('.card_title').forEach(input => {
+    input.style.display = 'inline'
+  })
+
   document.querySelectorAll('.form-group').forEach(input => {
     input.style.display = 'none'
   })
 }
 
-const showHideInputEdit = (e) => {
+const showHideInputEditBoard = (e) => {
   const title = e.target.closest('.kanban-title-board')
   const id = title.closest('.kanban-board-header').closest('.kanban-board').id
   const input = e.target.closest('.kanban-title-board').closest('.kanban-board-header').querySelector('.kanban-title-input')
@@ -236,10 +251,38 @@ const showHideInputEdit = (e) => {
       
     }
   })
+ 
+}
+
+const showHideInputEditTask = (e) => {
+  const title = e.target.closest('.title-edit-delete-wrapper').querySelector('.card_title')
+  const id = e.target.closest('.title-edit-delete-wrapper').closest('.kanban-item').getAttribute('data-eid')
+  const input = e.target.closest('.title-edit-delete-wrapper').querySelector('.title-edit-input')
+  
+  console.log(input)
 
   
 
+  hideAllInputs()
+  title.style.display = 'none'
+  input.style.display = 'inline'
+  input.value = title.innerText
+
   
+
+  input.addEventListener('keyup', (event)=> {
+
+    if (event.keyCode ===13) {
+      updateData('tasks', id, {title: input.value});
+      title.innerHTML = input.value;
+
+      title.style.display = 'inline';
+      input.style.display = 'none';
+
+      addEventToEditName()
+      
+    }
+  })
 }
 
 

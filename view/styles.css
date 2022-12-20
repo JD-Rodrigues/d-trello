@@ -57,7 +57,6 @@
 }
 
 .kanban-board header .kanban-title-board, .kanban-board header input {
-  width: 100%;
   outline: none;
   border: none;
   font-weight: 700;
@@ -66,11 +65,9 @@
   display: inline;
 }
 
-.kanban-board header .kanban-title-board {
-  /* display: none; */
-}
 
-.kanban-board header input {
+.kanban-board header input, .title-edit-input {
+  width: 80%;
   display: none;
 }
 

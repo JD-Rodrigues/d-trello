@@ -321,14 +321,6 @@ var dragula = require('dragula');
         headerBoard.innerHTML =
           '<div class="kanban-title-board">' + board.title + '</div>'
 
-        // headerBoard.innerHTML += `<input type="text" class="kanban-title-input">`
-        
-        // headerBoard.querySelector('.ph-pencil-fill').addEventListener('click', showHideInputEdit)
-        // const inputEdit = document.createElement('input')
-        // inputEdit.setAttribute('type', 'text')
-        // inputEdit.classList.add('kanban-title-input')
-        // headerBoard.appendChild(inputEdit)
-        //content board
         var contentBoard = document.createElement('main')
         contentBoard.classList.add('kanban-drag')
         if (board.bodyClass !== '' && board.bodyClass !== undefined)
@@ -629,7 +621,7 @@ var dragula = require('dragula');
                   customItemLayout = '';
               }
 
-              result = '<div class=\'item_handle ' + customCssHandler + '\'><i class=\'item_handle ' + customCssIconHandler + '\'></i></div><div><span class="card_title">' + result + '</span><i class="ph-trash-fill"></i><i class="ph-pencil-fill"></i></div>'
+              result = '<div class=\'item_handle ' + customCssHandler + '\'><i class=\'item_handle ' + customCssIconHandler + '\'></i></div><div class="title-edit-delete-wrapper"><span class="card_title">' + result + '</span><input type="text" class="title-edit-input"><i class="ph-trash-fill"></i><i class="ph-pencil-fill"></i></div>'
           } else {
               result = '<div> ' + self.options.itemHandleOptions.customHandler.replace(/%([^%]+)%/g, function (match, key) 
                       { return item[key] !== undefined ? item[key] : '' }) + ' </div>'
