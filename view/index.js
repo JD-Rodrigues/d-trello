@@ -1,6 +1,25 @@
 // it sorts an object array by order column: board_order or task_order.
-const sortResponseByOrder = (array) => [
-  array.sort((a,b)=>{
+
+
+const getData = async () => {
+  
+  const dataBoards = await readData('boards')
+  const dataTasks = await readData('tasks')
+
+  dataBoards.sort((a,b)=>{
+    switch (a.board_order > b.board_order) {   
+      case true:
+        return 1;
+        break;
+      case false:
+        return -1;
+        break
+      default:
+        break;
+    }
+  })
+  
+  dataTasks.sort((a,b)=>{
     switch (a.task_order > b.task_order) {   
       case true:
         return 1;
@@ -12,16 +31,8 @@ const sortResponseByOrder = (array) => [
         break;
     }
   })
-]
 
-const getData = async () => {
-  
-  const dataBoards = await readData('boards')
-  const dataTasks = await readData('tasks')
-  
-  sortResponseByOrder(dataTasks)
-
-  console.log(await dataTasks)
+  console.log(await dataBoards)
   let boards = []
   let tasks = []
   for (let board in await dataBoards) {
@@ -57,6 +68,20 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
       console.log("Trigger on all items right-click!");
     },
 
+    dropBoard: function (el, target, source, sibling) {
+      sibling ? target.insertBefore(el, sibling) : target.appendChild(el)
+      const boardId = el.querySelector('.kanban-board').id
+      const boardsHTMLCollection = source.children
+      const boardsNodes = [...boardsHTMLCollection]
+
+      boardsNodes.forEach((board,index) => {
+        const id = board.querySelector('.kanban-board').id
+        console.log(id)
+        updateBoardOrder(id,index)
+      })
+      
+    },
+
     // 1- Inserts the task element in the DOM at the position it was dropped in. 
     // 2 - Updates the parent board in the moved task
     // 3 - Updates the tasks order in the source and target board at database.
@@ -69,7 +94,6 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
       const targetChildrenNodes = [...targetChildrenCollection]
       const sourceChildrenCollection = source.children
       const sourceChildrenNodes = [...sourceChildrenCollection]
-      const elementIndex = targetChildrenNodes.findIndex(element => element.dataset.eid === el.dataset.eid)
             
       updateData('tasks', taskId, { board_id: boardTargetId })
       
@@ -83,6 +107,7 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
         updateTaskOrder(id, index)
       })
     },
+
     buttonClick: function(el, boardId) {
       console.log(el);
       console.log(boardId);
@@ -245,8 +270,13 @@ const confirmRemoveCard = (cardId) => {
 }
 
 const updateTaskOrder = (id, index) => {
-  const order = index +1
-  updateData('tasks', id, {task_order: order})
+  const order = index +1;
+  updateData('tasks', id, {task_order: order});
+}
+
+const updateBoardOrder = (id, index) => {
+  const order = index + 1;
+  updateData('boards', id, {board_order: order})
 }
 
 // Set display "none" for all inputs in the boards' title and restore the initial condition to the titles: display "inline".
