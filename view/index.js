@@ -1,7 +1,27 @@
+// it sorts an object array by order column: board_order or task_order.
+const sortResponseByOrder = (array) => [
+  array.sort((a,b)=>{
+    switch (a.task_order > b.task_order) {   
+      case true:
+        return 1;
+        break;
+      case false:
+        return -1;
+        break
+      default:
+        break;
+    }
+  })
+]
+
 const getData = async () => {
   
   const dataBoards = await readData('boards')
   const dataTasks = await readData('tasks')
+  
+  sortResponseByOrder(dataTasks)
+
+  console.log(await dataTasks)
   let boards = []
   let tasks = []
   for (let board in await dataBoards) {
@@ -314,6 +334,7 @@ const showHideInputEditTask = (e) => {
     }
   })
 }
+
 
 
 

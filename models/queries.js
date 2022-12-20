@@ -81,7 +81,7 @@ const read = table => {
               resolve(res)
            }
         }
-     );
+     )
     } catch(error) {
       if (error) console.log(error);
       conn.rollback(error => {
