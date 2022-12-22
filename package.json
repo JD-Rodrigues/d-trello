@@ -1,0 +1,19 @@
+{
+  "name": "d-trello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jest-unit-config.js",
+  "scripts": {
+    "start": "node controler/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JD-Rodrigues/d-trello.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JD-Rodrigues/d-trello/issues"
+  },
+  "homepage": "https://github.com/JD-Rodrigues/d-trello#readme"
+}

@@ -8,7 +8,7 @@ const router = require('./routes')
 //     const data = await read('boards')
 //     res.json(data)
 //   })
-
+const port = process.env.PORT || 3001;
 
 const app = express()
 
@@ -20,5 +20,5 @@ app.use(express.urlencoded({extended: true}))
 
 
 
-app.listen(3001, ()=>console.log('Server ON'))
+app.listen(port, ()=>console.info('Server ON'))
 
