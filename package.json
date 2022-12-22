@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JD-Rodrigues/d-trello/issues"
   },
-  "homepage": "https://github.com/JD-Rodrigues/d-trello#readme"
+  "homepage": "https://github.com/JD-Rodrigues/d-trello#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
