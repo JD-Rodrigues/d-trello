@@ -1,13 +1,14 @@
-const mariadb = require('mariadb/callback');
+const mysql = require('mysql2/promise');
 
 
-const conn = mariadb.createConnection({
-  host: "containers-us-west-176.railway.app",
-  user: "root", 
-  password: "MH3JQfAuj3RVqLJK4gix",
-  database: "railway",
-  pipelining:true,
-});
+const connection = async () => {
+  const connection = await mysql.createConnection("mysql://root:MH3JQfAuj3RVqLJK4gix@containers-us-west-176.railway.app:7843/railway"); 
+  console.log('Conectou ao mysql')
+  return connection
+}
+
+
+
 
 // const conn = mariadb.createConnection({
 //   host: "localhost",
@@ -17,4 +18,4 @@ const conn = mariadb.createConnection({
 //   pipelining:true,
 // });
 
-module.exports = {conn}
+module.exports = {connection}

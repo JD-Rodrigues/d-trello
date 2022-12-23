@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/boards', async (req, res)=> {
   const data = await read('boards')
-  res.json(data)
+  res.send(data)
 })
 
 router.get('/tasks', async (req, res)=> {
