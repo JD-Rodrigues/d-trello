@@ -1,5 +1,5 @@
 const createData = async (route, data) => {
-  await fetch(`http://localhost:3001/${route}/`, 
+  await fetch(`https://d-trello.onrender.com/${route}/`, 
   {
     headers: {"Content-type": "application/json; charset=UTF-8"},
     method: "POST",
@@ -10,12 +10,12 @@ const createData = async (route, data) => {
 }
 
 const readData = async (route) => {
-  const res = await fetch(`http://localhost:3001/${route}`);
+  const res = await fetch(`https://d-trello.onrender.com/${route}`);
   return res.json()
 }
 
 const updateData = async (route, id, data) => {
-  await fetch(`http://localhost:3001/${route}/${id}`, 
+  await fetch(`https://d-trello.onrender.com/${route}/${id}`, 
   {
     headers: {"Content-type": "application/json; charset=UTF-8"},
     method: "PUT",
@@ -26,7 +26,7 @@ const updateData = async (route, id, data) => {
 }
 
 const deleteData = async (route, id) => {
-  await fetch(`http://localhost:3001/${route}/${id}`,
+  await fetch(`https://d-trello.onrender.com/${route}/${id}`,
   {
     method: "DELETE"
   })
