@@ -50,7 +50,7 @@ const getData = async () => {
   InstanceKanban(boards, await dataTasks, dataBoards)  
 }
 
-// onload = () => getData()
+onload = () => getData()
 
 var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
   
