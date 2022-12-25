@@ -50,7 +50,7 @@ const getData = async () => {
   InstanceKanban(boards, await dataTasks, dataBoards)  
 }
 
-onload = () => getData()
+// onload = () => getData()
 
 var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
   
@@ -163,7 +163,27 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
     e.stopPropagation()
     const board = trashIcon.closest('.kanban-title-board').closest('.kanban-board-header').closest('.kanban-board')
 
-    confirmRemoveBoard(board.id)
+    const boardTasksLength = board.querySelector('.kanban-drag').children.length
+    
+    if(boardTasksLength > 0) {
+      Swal.fire({
+        title: 'Remova todas as tarefas do quadro antes de deletá-lo!',
+        showCancelButton: false,
+    }) 
+    } else {
+      Swal.fire({
+        title: 'Gostaria realmente de deletar este quadro?',
+    }).then(button=> {
+      if(button.isConfirmed === true){
+        board.parentElement.remove()
+        deleteData('boards', board.id).then(getData)
+        
+    }
+     } )
+    }
+    
+
+    
 
   }))
 
@@ -229,11 +249,13 @@ const nameNewBoard = () => {
               class: 'default',
               board_order: boards.length + 1
             }
-          ).then(data => getData().then(
-            setTimeout(()=>{
+          ).then(data => {
+            getData().then(
+              setTimeout(()=>{
               container.scrollLeft = container.scrollWidth
-            },400)
-          )); 
+            },1000))
+            
+          }); 
           })        
           
           
@@ -249,7 +271,6 @@ addBoard.addEventListener("click", nameNewBoard);
 const confirmRemoveBoard = (boardId) => {
   Swal.fire({
     title: 'Gostaria realmente de deletar este quadro?',
-    showCancelButton: true,
 }).then(button=> {
   if(button.isConfirmed === true){
   deleteData('boards', boardId).then(getData)
@@ -258,13 +279,14 @@ const confirmRemoveBoard = (boardId) => {
 }
 
 //This function receive a card element as argument and opens a confirm modal. If the confirm button is clicked, the card will be removed.
-const confirmRemoveCard = (cardId) => {
+const confirmRemoveCard = (cardId, target) => {
   Swal.fire({
     title: 'Gostaria realmente de deletar este card?',
     showCancelButton: true,
 }).then(button=> {
   if(button.isConfirmed === true){
-  deleteData('tasks', cardId).then(getData)
+    target.remove()
+    deleteData('tasks', cardId)
 }
  } )
 }

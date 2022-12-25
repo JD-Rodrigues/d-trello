@@ -216,8 +216,9 @@ var dragula = require('dragula');
       nodeItem.innerHTML = __buildItemCard(element)
       
       //A listener is added to the item card. It is listening for a click event that will fire the confirmRemoveCard, declared in the script tag (index.html). The function receive the card element as argument and opens a confirm modal.If the confirm button is clicked, this card will be removed.
-      nodeItem.querySelector('.ph-trash-fill').addEventListener('click',()=>{
-        confirmRemoveCard(element.id)
+      nodeItem.querySelector('.ph-trash-fill').addEventListener('click',(e)=>{
+        const target = e.target.parentElement.parentElement
+        confirmRemoveCard(element.id, target)
       })
       
       //add function
