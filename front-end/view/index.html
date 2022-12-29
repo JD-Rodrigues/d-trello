@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Title</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/login.css">
     <link
       href="https://fonts.googleapis.com/css?family=Lato"
       rel="stylesheet"
     />
     <script src="https://unpkg.com/phosphor-icons"></script>
-    
+    <script src="./js/login.js"></script>
   </head>
   <body>
-    <header>
+    <!-- <header>
       <input type="search" name="" id="search" oninput=filterCards() />
     </header>
-    <div id="dTrello"></div>
+    <div open id="dTrello"></div>
     <button id="addNewBoard">Adicionar novo quadro</button>
+    <dalog  class="login__modal">
+      <form  class="login__form">
+        <h2 class="login__form__title">Login</h2>
+        <div id="buttonLogin"></div>
+      </form>
+    </dialog>     -->
+  </body>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/jwt-decode@3.1.2/build/jwt-decode.js"></script>
     <script src="./plugins/jkanban.js"></script>
-    <script src="./services.js"></script>
+    <script src="./js/services.js"></script>
     <script src="./plugins/drag_auto_scroll.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./index.js"></script>
-  </body>
+    <script src="./js/index.js"></script>
 </html>
