@@ -1,4 +1,5 @@
 const createData = async (route, data) => {
+  
   await fetch(`http://localhost:3001/${route}/`, 
   {
     headers: {"Content-type": "application/json; charset=UTF-8"},

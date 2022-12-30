@@ -34,7 +34,7 @@ const getData = async () => {
       }
     })
 
-    console.log(await dataBoards)
+    
     let boards = []
     let tasks = []
     for (let board in await dataBoards) {
@@ -49,7 +49,8 @@ const getData = async () => {
       )
     }
     document.querySelector('#dTrello').innerHTML=""
-    InstanceKanban(boards, await dataTasks, dataBoards, userCode)  
+
+    InstanceKanban(boards, dataTasks, userCode)  
   }
   
 }
@@ -154,11 +155,10 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
         var text = e.target[0].value;
         const boardId = e.target.closest('.kanban-drag').closest('.kanban-board').id
         const childrenLength = e.target.parentElement.children.length
-        console.log(childrenLength)
-        
+        console.log(userCode)
         if (text) {
-          createData('tasks', {title: text, board_id:boardId, task_order:childrenLength, user_code: userCode}).then(getData)
-          formItem.parentNode.removeChild(formItem);
+          createData('tasks', {title: text, board_id:boardId, task_order:childrenLength, user_code: userCode}).then(formItem.parentNode.removeChild(formItem)).then(getData)
+          
         } else {
           Swal.fire({
             title: 'Insira um nome para o novo card!',
