@@ -30,7 +30,7 @@ async function handleCredentialResponse(response) {
   // console.log(userInDatabase)
 }
 
-const showHome = () => {
+const showHome = async () => {
   const body = document.querySelector('body')
   const homepage = `
     <header>
@@ -41,7 +41,11 @@ const showHome = () => {
     <button id="addNewBoard">Adicionar novo quadro</button>
   `
   body.innerHTML = `${homepage}`
-  getData()
+  
+  await getData()
+
+  var addBoard = document.getElementById("addNewBoard");
+  addBoard.addEventListener("click", nameNewBoard);
 }
 
 const showLoginScreen = () => {

@@ -49,14 +49,37 @@ const getData = async () => {
       )
     }
     document.querySelector('#dTrello').innerHTML=""
-    InstanceKanban(boards, await dataTasks, dataBoards)  
+    InstanceKanban(boards, await dataTasks, dataBoards, userCode)  
   }
   
 }
 
 // onload = () => getData()
 
-var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
+// Set display "none" for all inputs in the boards' title and restore the initial condition to the titles: display "inline".
+const hideAllInputs = () => {
+  document.querySelectorAll('.kanban-title-input').forEach(input => {
+    input.style.display = 'none'
+  })
+
+  document.querySelectorAll('.kanban-title-board').forEach(input => {
+    input.style.display = 'inline'
+  })
+
+  document.querySelectorAll('.title-edit-input').forEach(input => {
+    input.style.display = 'none'
+  })
+
+  document.querySelectorAll('.card_title').forEach(input => {
+    input.style.display = 'inline'
+  })
+
+  document.querySelectorAll('.form-group').forEach(input => {
+    input.style.display = 'none'
+  })
+}
+
+var InstanceKanban = async (allBoards, allTasks, userCode) => {
   
   var KanbanManager = await new jkanban({
     element: "#dTrello",
@@ -134,7 +157,7 @@ var InstanceKanban = async (allBoards, allTasks, prevBoards) => {
         console.log(childrenLength)
         
         if (text) {
-          createData('tasks', {title: text, board_id:boardId, task_order:childrenLength}).then(getData)
+          createData('tasks', {title: text, board_id:boardId, task_order:childrenLength, user_code: userCode}).then(getData)
           formItem.parentNode.removeChild(formItem);
         } else {
           Swal.fire({
@@ -244,14 +267,19 @@ const nameNewBoard = () => {
     if(boardName.value === "") {
       nameNewBoard()
     } else {
+      
         if(boardName.isConfirmed === true) {
           const container = document.querySelector('#dTrello')
-          readData('boards').then(boards => {
+          const credential = JSON.parse(localStorage.getItem('credential'))
+          
+          readData('boards', credential && credential.user_code).then(boards => {
+            console.log(boards)
             createData('boards',
             {
               title: `${boardName.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`,
               class: 'default',
-              board_order: boards.length + 1
+              board_order: boards.length + 1, 
+              user_code: credential && credential.user_code
             }
           ).then(data => {
             getData().then(
@@ -269,8 +297,8 @@ const nameNewBoard = () => {
   })         
 }
 
-var addBoard = document.getElementById("addNewBoard");
-addBoard.addEventListener("click", nameNewBoard);
+// var addBoard = document.getElementById("addNewBoard");
+// addBoard.addEventListener("click", nameNewBoard);
 
 const confirmRemoveBoard = (boardId) => {
   Swal.fire({
@@ -305,30 +333,9 @@ const updateBoardOrder = (id, index) => {
   updateData('boards', id, {board_order: order})
 }
 
-// Set display "none" for all inputs in the boards' title and restore the initial condition to the titles: display "inline".
-const hideAllInputs = () => {
-  document.querySelectorAll('.kanban-title-input').forEach(input => {
-    input.style.display = 'none'
-  })
 
-  document.querySelectorAll('.kanban-title-board').forEach(input => {
-    input.style.display = 'inline'
-  })
 
-  document.querySelectorAll('.title-edit-input').forEach(input => {
-    input.style.display = 'none'
-  })
-
-  document.querySelectorAll('.card_title').forEach(input => {
-    input.style.display = 'inline'
-  })
-
-  document.querySelectorAll('.form-group').forEach(input => {
-    input.style.display = 'none'
-  })
-}
-
-const showHideInputEditBoard = (e) => {
+var showHideInputEditBoard = (e) => {
   const title = e.target.closest('.kanban-title-board')
   const id = title.closest('.kanban-board-header').closest('.kanban-board').id
   const input = e.target.closest('.kanban-title-board').closest('.kanban-board-header').querySelector('.kanban-title-input')
