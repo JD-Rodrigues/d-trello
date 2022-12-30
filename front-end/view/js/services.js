@@ -1,6 +1,6 @@
 const createData = async (route, data) => {
   
-  await fetch(`http://localhost:3001/${route}/`, 
+  await fetch(`https://d-trello.onrender.com/${route}/`, 
   {
     headers: {"Content-type": "application/json; charset=UTF-8"},
     method: "POST",
@@ -11,7 +11,7 @@ const createData = async (route, data) => {
 }
 
 const readData = async (route, userCode) => {
-  const res = await fetch(`http://localhost:3001/${route}/${userCode}`);
+  const res = await fetch(`https://d-trello.onrender.com/${route}/${userCode}`);
   return res.json()
 }
 
