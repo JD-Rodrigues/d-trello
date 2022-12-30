@@ -2,52 +2,56 @@
 
 
 const getData = async () => {
-  
-  const dataBoards = await readData('boards')
-  const dataTasks = await readData('tasks')
+  const credential = await JSON.parse(localStorage.getItem('credential'))
+  if (credential) {
+    const userCode = credential.user_code
+    const dataBoards = await readData('boards', credential.user_code )
+    const dataTasks = await readData('tasks', credential.user_code )
 
-  dataBoards.sort((a,b)=>{
-    switch (a.board_order > b.board_order) {   
-      case true:
-        return 1;
-        break;
-      case false:
-        return -1;
-        break
-      default:
-        break;
-    }
-  })
-  
-  dataTasks.sort((a,b)=>{
-    switch (a.task_order > b.task_order) {   
-      case true:
-        return 1;
-        break;
-      case false:
-        return -1;
-        break
-      default:
-        break;
-    }
-  })
-
-  console.log(await dataBoards)
-  let boards = []
-  let tasks = []
-  for (let board in await dataBoards) {
-    boards.push(
-      {
-        id: `_todo${dataBoards[board].id}`,
-        idNumber: dataBoards[board].id,
-        title: dataBoards[board].title,
-        class: dataBoards[board].class,
-        dragTo: [],
+    dataBoards.sort((a,b)=>{
+      switch (a.board_order > b.board_order) {   
+        case true:
+          return 1;
+          break;
+        case false:
+          return -1;
+          break
+        default:
+          break;
       }
-    )
+    })
+    
+    dataTasks.sort((a,b)=>{
+      switch (a.task_order > b.task_order) {   
+        case true:
+          return 1;
+          break;
+        case false:
+          return -1;
+          break
+        default:
+          break;
+      }
+    })
+
+    console.log(await dataBoards)
+    let boards = []
+    let tasks = []
+    for (let board in await dataBoards) {
+      boards.push(
+        {
+          id: `_todo${dataBoards[board].id}`,
+          idNumber: dataBoards[board].id,
+          title: dataBoards[board].title,
+          class: dataBoards[board].class,
+          dragTo: [],
+        }
+      )
+    }
+    document.querySelector('#dTrello').innerHTML=""
+    InstanceKanban(boards, await dataTasks, dataBoards)  
   }
-  document.querySelector('#dTrello').innerHTML=""
-  InstanceKanban(boards, await dataTasks, dataBoards)  
+  
 }
 
 // onload = () => getData()

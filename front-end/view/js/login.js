@@ -1,13 +1,34 @@
 
+window.onload = () => checkLogin();
 
+const checkUser = async (userCode) => {
+  const user = await readData('users', userCode)
+  return user[0]
+}
 
-function handleCredentialResponse(response) {
+async function handleCredentialResponse(response) {
   const data = jwt_decode(response.credential)
   console.log(data)
-  localStorage.setItem('authenticated', 'true')
-  checkLogin()
+  this.setUser = async () => {
+    const userInDatabase = await checkUser(data.sub)
+    if(userInDatabase !== undefined) {
+      localStorage.setItem('credential', JSON.stringify(userInDatabase))
+      checkLogin()
+    } else {
+      await createData('users', {name: data.name, email:data.email, user_code: data.sub, picture: data.picture})
+      await createData('boards', {title: 'A fazer<i class="ph-pencil-fill">', board_order: 1, class: 'info, good', user_code:data.sub})
+      await createData('boards', {title: 'Fazendo<i class="ph-pencil-fill">', board_order: 2, class: 'warning', user_code:data.sub})
+      await createData('boards', {title: 'Feito<i class="ph-pencil-fill">', board_order: 3, class: 'success', user_code:data.sub})
+      await this.setUser()
+    }
+  }
+
+  this.setUser()
+  
+  
+  
+  // console.log(userInDatabase)
 }
-window.onload = () => checkLogin();
 
 const showHome = () => {
   const body = document.querySelector('body')
@@ -20,7 +41,7 @@ const showHome = () => {
     <button id="addNewBoard">Adicionar novo quadro</button>
   `
   body.innerHTML = `${homepage}`
-
+  getData()
 }
 
 const showLoginScreen = () => {
@@ -46,11 +67,12 @@ const showLoginScreen = () => {
 }
 
 const checkLogin = () => {
-  const authenticated = localStorage.getItem('authenticated')  
-  authenticated === null ? showLoginScreen() : showHome()
+  const credential = localStorage.getItem('credential')  
+  credential === null ? showLoginScreen() : showHome()
 }
 
 const logout = () => {
-  localStorage.removeItem('authenticated')
+  localStorage.removeItem('credential')
   checkLogin()
 }
+

@@ -46,10 +46,10 @@ const create = async (table, info) => {
 
 }
 
-const read = async table => {  
+const read = async (table, code) => {  
     try {      
       const conn = await connection()
-      const data = await conn.query(`SELECT * FROM ${table}`)
+      const data = await conn.query(`SELECT * FROM ${table}  WHERE user_code = "${code}"`)
       return data[0]        
     } catch(error) {
       if (error) console.log(error);
@@ -117,4 +117,5 @@ const remove = async (table, id) => {
 
 // create('tasks', {title: 'tomar água', board_id:1, task_order:4})
 // update('tasks', 15, {title: 'Fazer checklist do dia seguinte'})
+// read('users', 'hsaduhauidahdi95').then(console.log)
 module.exports = {create, read, update, remove}
