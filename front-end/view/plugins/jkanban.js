@@ -283,10 +283,13 @@ var dragula = require('dragula');
           //add width to container
           if (self.container.style.width === '') {
             self.container.style.width =
-              parseInt(boardWidth) + parseInt(self.options.gutter) * 2 + 'px'
+            parseInt(self.container.childElementCount) *
+            parseInt(boardWidth) +
+            parseInt(self.options.gutter) * 2 +
+            'px'
           } else {
             self.container.style.width =
-              parseInt(self.container.style.width) +
+              parseInt(self.container.childElementCount) *
               parseInt(boardWidth) +
               parseInt(self.options.gutter) * 2 +
               'px'
@@ -299,12 +302,13 @@ var dragula = require('dragula');
         boardNode.id = board.idNumber
         boardNode.dataset.order = self.container.childNodes.length + 1
         boardNode.classList.add('kanban-board')
+        boardWrapper.classList.add('board-wrapper')
 
         //set style
         if (self.options.responsivePercentage) {
           boardNode.style.width = boardWidth + '%'
         } else {
-          boardNode.style.width = boardWidth
+          boardNode.style.maxWidth = boardWidth
         }
         boardNode.style.marginLeft = self.options.gutter
         boardNode.style.marginRight = self.options.gutter
