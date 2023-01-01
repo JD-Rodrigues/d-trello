@@ -41,7 +41,7 @@ const showHome = async () => {
         <button id="logout" onclick="logout()">Sair</button>
       </div>
     </header>
-    <button id="addNewBoard">Adicionar novo quadro</button>
+    <button id="addNewBoard">+ Novo quadro</button>
     <div id="dTrello"></div>
   `
   body.innerHTML = `${homepage}`

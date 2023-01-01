@@ -169,7 +169,7 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
     },
     itemAddOptions: {
       enabled: true,
-      content: '+ Adicionar nova tarefa',
+      content: '+ Nova tarefa',
       class: 'custom-button',
       footer: true
     },   
