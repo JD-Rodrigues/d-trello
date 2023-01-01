@@ -85,7 +85,7 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
   var KanbanManager = await new jkanban({
     element: "#dTrello",
     gutter: "10px",
-    widthBoard: "400px",
+    widthBoard: "500px",
     itemHandleOptions:{
       enabled: true,
     },

@@ -283,10 +283,7 @@ var dragula = require('dragula');
           //add width to container
           if (self.container.style.width === '') {
             self.container.style.width =
-            parseInt(self.container.childElementCount) *
-            parseInt(boardWidth) +
-            parseInt(self.options.gutter) * 2 +
-            'px'
+              parseInt(boardWidth) + parseInt(self.options.gutter) * 2 + 'px'
           } else {
             self.container.style.width =
               parseInt(self.container.childElementCount) *

@@ -129,7 +129,6 @@
 }
 
 .ph-pencil-fill, .ph-trash-fill {
-  float: right;
   cursor: pointer;
 }
 
@@ -151,13 +150,28 @@
 .kanban-item {
   background: #fff;
   padding: 15px 10px;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 14px;
+  word-break: break-word;
   margin-bottom: 20px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border-bottom: 1px var(--dark-smooth) solid;
+  display: flex;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   animation: append-animate 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.title-edit-delete-wrapper {
+  display: flex;
+  column-gap: 5px;
+}
+
+.form-group button {
+  border: 1px solid var(--dark-smooth);
+  font-size: 12px;
+  margin-right: 10px;
+  padding: 3px 5px;
 }
 
 
@@ -210,10 +224,9 @@
 .drag_handler {
     background: #fff;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     position: relative;
-    float: left;
     margin-right: 10px;
 }
 
@@ -225,7 +238,7 @@
     position: relative;
     display: block;
     background: #000;
-    width: 100%;
+    width: 20px;
     height: 1px;
     top: 7px;
     transition: .5s ease-in-out;
@@ -237,7 +250,7 @@
     content: '';
     display: block;
     width: 100%;
-    height: 100%;
+    height: 1px;
     position: absolute;
     transition: .5s ease-in-out;
 }
