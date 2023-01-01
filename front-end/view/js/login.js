@@ -33,12 +33,12 @@ async function handleCredentialResponse(response) {
 const showHome = async () => {
   const body = document.querySelector('body')
   const homepage = `
-    <header>
-      <input type="search" name="" id="search" oninput=filterCards() />
+    <header class="main-header">
+      <input type="search" id="search" oninput=filterCards() placeholder="Busca"/>
       <button id="logout" onclick="logout()">Logout</button>
     </header>
-    <div id="dTrello"></div>
     <button id="addNewBoard">Adicionar novo quadro</button>
+    <div id="dTrello"></div>
   `
   body.innerHTML = `${homepage}`
   

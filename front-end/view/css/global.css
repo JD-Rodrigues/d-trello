@@ -392,3 +392,18 @@ template {
 [ hidden ] {
   display: none;
 }
+
+/*----------------------------------------------------*\
+  #  F O N T S  A N D  C O L O R S
+\*----------------------------------------------------*/
+
+
+body {
+  --background-light: #f3e4d2;
+  --dark: #392428;
+  --dark-smooth: #b6a799;
+}
+
+button {
+  cursor: pointer;
+}

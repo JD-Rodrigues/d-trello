@@ -85,7 +85,7 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
   var KanbanManager = await new jkanban({
     element: "#dTrello",
     gutter: "10px",
-    widthBoard: "300px",
+    widthBoard: "400px",
     itemHandleOptions:{
       enabled: true,
     },
@@ -169,7 +169,7 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
     },
     itemAddOptions: {
       enabled: true,
-      content: '+ Add New Card',
+      content: '+ Adicionar nova tarefa',
       class: 'custom-button',
       footer: true
     },   
