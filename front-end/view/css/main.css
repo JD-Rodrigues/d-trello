@@ -171,6 +171,7 @@
 
 .icons-wrapper {
   display: flex;  
+  column-gap: 3px;
 } 
 
 
