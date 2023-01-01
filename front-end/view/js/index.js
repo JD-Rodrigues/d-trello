@@ -55,7 +55,6 @@ const getData = async () => {
   
 }
 
-// onload = () => getData()
 
 // Set display "none" for all inputs in the boards' title and restore the initial condition to the titles: display "inline".
 const hideAllInputs = () => {
@@ -178,7 +177,7 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
     
   })
 
-  document.querySelectorAll('.kanban-board-header').forEach(header=> header.innerHTML += `<input type="text" class="kanban-title-input">`)
+  document.querySelectorAll('.kanban-board-header').forEach(header=> header.innerHTML += `<input type="text" class="kanban-title-input" maxlength="30">`)
 
   
 
@@ -350,12 +349,12 @@ var showHideInputEditBoard = (e) => {
   input.addEventListener('keyup', (event)=> {
 
     if (event.keyCode ===13) {
-      if(id == 6 || id == 7 || id == 24) {
-        updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'>`});
-        title.innerHTML = `${input.value}<i class='ph-pencil-fill'>`;
-      }else {
+      if(event.target.parentElement.classList.contains('default')) {
         updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`});
-        title.innerHTML = `${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`;        
+        title.innerHTML = `${input.value}<i class='ph-pencil-fill'><i class='ph-trash-fill'>`;          
+      }else {
+        updateData('boards', id, {title:`${input.value}<i class='ph-pencil-fill'>`});
+        title.innerHTML = `${input.value}<i class='ph-pencil-fill'>`;  
       }
 
       title.style.display = 'inline';

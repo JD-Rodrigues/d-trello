@@ -6,7 +6,11 @@
   display: flex;
   justify-content: space-between;
   z-index: 999;
-  background-color: var(--dark-smooth);
+  background-color: #2b3742;
+}
+
+.main-header, .main-header #logout {
+  color: whitesmoke
 }
 
 .main-header .user {
@@ -23,7 +27,13 @@
 
 #search, #logout {
   border: none;
+  border-radius: 5px;
   padding: 5px;
+}
+
+#search::placeholder {
+  padding: 5px;
+
 }
 
 #addNewBoard {
@@ -114,7 +124,6 @@
   display: inline;
 }
 
-
 .kanban-board header input, .title-edit-input {
   width: 80%;
   display: none;
@@ -122,6 +131,12 @@
 
 .kanban-board header .kanban-title-button {
   float: right;
+}
+
+.kanban-board header .kanban-title-board {
+  border: red solid;
+  display: flex;
+  justify-content: space-between;
 }
 
 .kanban-title-board .ph-trash-fill {
@@ -319,3 +334,6 @@ body {
 .invisible {
   display: none;
 }
+
+
+

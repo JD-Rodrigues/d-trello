@@ -315,6 +315,7 @@ var dragula = require('dragula');
           var allClasses = board.class.split(',')
         else allClasses = []
         headerBoard.classList.add('kanban-board-header')
+      
         allClasses.map(function (value) {
           // Remove empty spaces
           value = value.replace(/^[ ]+/g, '')
