@@ -23,8 +23,7 @@ async function handleCredentialResponse(response) {
     }
   }
 
-  this.setUser()
-  
+  this.setUser() 
   
   
   // console.log(userInDatabase)
@@ -32,15 +31,23 @@ async function handleCredentialResponse(response) {
 
 const showHome = async () => {
   const body = document.querySelector('body')
+  const credential = JSON.parse(localStorage.getItem('credential'))
   const homepage = `
     <header class="main-header">
       <input type="search" id="search" oninput=filterCards() placeholder="Busca"/>
-      <button id="logout" onclick="logout()">Logout</button>
+      <div class="user">
+        <p class="user-name"></p>
+        <img src="" class="profile-picture">
+        <button id="logout" onclick="logout()">Sair</button>
+      </div>
     </header>
     <button id="addNewBoard">Adicionar novo quadro</button>
     <div id="dTrello"></div>
   `
   body.innerHTML = `${homepage}`
+  body.querySelector('.user-name').innerHTML = credential.name
+  document.querySelector('.profile-picture').src = credential.picture
+  
   
   await getData()
 

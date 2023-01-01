@@ -3,8 +3,22 @@
   padding: 10px;
   padding: 20px 50px;
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   z-index: 999;
   background-color: var(--dark-smooth);
+}
+
+.main-header .user {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  font-weight: bold;
+}
+
+.profile-picture {
+  width: 30px;
+  border-radius: 50%;
 }
 
 #search, #logout {
@@ -14,10 +28,17 @@
 
 #addNewBoard {
   margin: 90px 0 0 50px;
+  padding: 5px;
+}
+
+#logout {
+  background-color: transparent;
+  align-self: flex-end;
+  margin-left: 10px;
 }
 
 #logout:hover {
-  background-color: rgb(224, 224, 224);
+  text-decoration: underline;
 }
 
 .kanban-drag, #dTrello {
@@ -132,6 +153,9 @@
   padding: 15px 10px;
   font-size: 14px;
   margin-bottom: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: 1px var(--dark-smooth) solid;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   animation: append-animate 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
