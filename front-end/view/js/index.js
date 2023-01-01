@@ -63,7 +63,7 @@ const hideAllInputs = () => {
   })
 
   document.querySelectorAll('.kanban-title-board').forEach(input => {
-    input.style.display = 'inline'
+    input.style.display = 'flex'
   })
 
   document.querySelectorAll('.title-edit-input').forEach(input => {
@@ -357,7 +357,7 @@ var showHideInputEditBoard = (e) => {
         title.innerHTML = `${input.value}<i class='ph-pencil-fill'>`;  
       }
 
-      title.style.display = 'inline';
+      title.style.display = 'flex';
       input.style.display = 'none';
       addEventToEditName()
       
