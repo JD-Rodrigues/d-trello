@@ -134,7 +134,6 @@
 }
 
 .kanban-board header .kanban-title-board {
-  border: red solid;
   display: flex;
   justify-content: space-between;
 }
@@ -290,7 +289,7 @@ body {
   font-family: "Ubuntu";
   color: var(--dark);
   margin: 0;
-  background-color: #46544c;
+  background-color: var(--dark-smooth);
 }
 
 #dTrello {

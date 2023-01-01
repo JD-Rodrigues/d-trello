@@ -7,21 +7,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-image: url('../assets/images/background-login.svg');
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .login__form {
   width: 300px;
-  height: 350px;
+  height: 200px;
   padding: 20px;
-  border: solid grey 1px;
+  border-top: none;
+  color: var(--dark-smooth);
+  box-shadow: 0 5px 10px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 40px;
+  background-color: var(--background-light);
 }
 
 .login__form__title {
   font-size: 25px;
+  color: var(--dark);
 }
