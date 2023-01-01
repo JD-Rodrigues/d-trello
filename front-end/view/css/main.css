@@ -163,9 +163,16 @@
 }
 
 .title-edit-delete-wrapper {
-  display: flex;
+  width: 100%;
+  display: flex;  
+  justify-content: space-between;
   column-gap: 5px;
 }
+
+.icons-wrapper {
+  display: flex;  
+} 
+
 
 .form-group button {
   border: 1px solid var(--dark-smooth);
