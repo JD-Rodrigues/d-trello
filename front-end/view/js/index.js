@@ -185,33 +185,9 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
 
   
   //Iterate over each trash icon of the boards, adding a listener that fires a deletion function, passing the board's id as argument.
-  document.querySelectorAll('.kanban-title-board .ph-trash-fill').forEach(trashIcon=> trashIcon.addEventListener('click',(e)=>{
-    e.stopPropagation()
-    const board = trashIcon.closest('.kanban-title-board').closest('.kanban-board-header').closest('.kanban-board')
+  
 
-    const boardTasksLength = board.querySelector('.kanban-drag').children.length
-    
-    if(boardTasksLength > 0) {
-      Swal.fire({
-        title: 'Remova todas as tarefas do quadro antes de deletá-lo!',
-        showCancelButton: false,
-    }) 
-    } else {
-      Swal.fire({
-        title: 'Gostaria realmente de deletar este quadro?',
-    }).then(button=> {
-      if(button.isConfirmed === true){
-        board.parentElement.remove()
-        deleteData('boards', board.id).then(getData)
-        
-    }
-     } )
-    }
-    
-
-    
-
-  }))
+  addEventToRemoveBoards()
 
   const renderTasks = () => {
     allBoards.forEach(board => {
@@ -238,6 +214,32 @@ const addEventToEditName = () => {
   
 
   
+}
+
+const addEventToRemoveBoards = () => {
+  document.querySelectorAll('.kanban-title-board .ph-trash-fill').forEach(trashIcon=> trashIcon.addEventListener('click',(e)=>{
+    e.stopPropagation()
+    const board = trashIcon.closest('.kanban-title-board').closest('.kanban-board-header').closest('.kanban-board')
+
+    const boardTasksLength = board.querySelector('.kanban-drag').children.length
+    
+    if(boardTasksLength > 0) {
+      Swal.fire({
+        title: 'Remova todas as tarefas do quadro antes de deletá-lo!',
+        showCancelButton: false,
+    }) 
+    } else {
+      Swal.fire({
+        title: 'Gostaria realmente de deletar este quadro?',
+    }).then(button=> {
+      if(button.isConfirmed === true){
+        board.parentElement.remove()
+        deleteData('boards', board.id).then(getData)
+        
+    }
+     } )
+    }   
+  }))
 }
 
 const filterCards = () => {
@@ -335,6 +337,7 @@ const updateBoardOrder = (id, index) => {
 
 
 var showHideInputEditBoard = (e) => {
+  e.stopPropagation()
   const title = e.target.closest('.kanban-title-board')
   const id = title.closest('.kanban-board-header').closest('.kanban-board').id
   const input = e.target.closest('.kanban-title-board').closest('.kanban-board-header').querySelector('.kanban-title-input')
@@ -360,6 +363,8 @@ var showHideInputEditBoard = (e) => {
       title.style.display = 'flex';
       input.style.display = 'none';
       addEventToEditName()
+      addEventToRemoveBoards()
+      
       
     }
   })
