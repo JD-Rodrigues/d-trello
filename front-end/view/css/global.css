@@ -399,9 +399,11 @@ template {
 
 
 body {
+  --background-dark: #2b3742;
   --background-light: #f3e4d2;
   --dark: #392428;
   --dark-smooth: #46544c;
+  --highlight:#e52620;
 }
 
 button {

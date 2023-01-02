@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   z-index: 999;
-  background-color: #2b3742;
+  background-color: var(--background-dark);
 }
 
 .main-header, .main-header #logout {
