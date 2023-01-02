@@ -1,10 +1,11 @@
 .main-header {
   width: 100%;
   padding: 10px;
-  padding: 20px 50px;
+  padding: 5px 50px;
   position: fixed;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   z-index: 999;
   background-color: var(--background-dark);
 }
@@ -26,29 +27,29 @@
 }
 
 .profile-picture {
-  width: 30px;
+  width: 40px;
   border-radius: 50%;
 }
 
 #search, #logout {
+  height: 50%;
   border: none;
   border-radius: 5px;
   padding: 5px;
+  outline: none;
 }
 
 #search::placeholder {
   padding: 5px;
-
 }
 
 #addNewBoard {
-  margin: 90px 0 0 50px;
+  margin: 100px 0 0 50px;
   padding: 5px 10px;
 }
 
 #logout {
   background-color: transparent;
-  align-self: flex-end;
   margin-left: 10px;
 }
 
@@ -168,7 +169,7 @@
 
 .kanban-item {
   background: #fff;
-  padding: 15px 10px;
+  padding: 10px 10px;
   font-size: 12px;
   line-height: 14px;
   word-break: break-word;
@@ -177,6 +178,7 @@
   border-bottom-right-radius: 5px;
   border-bottom: 1px var(--dark-smooth) solid;
   display: flex;
+  align-items: center;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   animation: append-animate 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -255,6 +257,7 @@
     height: 25px;
     position: relative;
     margin-right: 10px;
+    display: flex;
 }
 
 .drag_handler:hover {
@@ -267,7 +270,7 @@
     background: #000;
     width: 20px;
     height: 1px;
-    top: 7px;
+    align-self: center;
     transition: .5s ease-in-out;
 }
 

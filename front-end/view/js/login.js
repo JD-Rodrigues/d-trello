@@ -34,7 +34,7 @@ const showHome = async () => {
   const credential = JSON.parse(localStorage.getItem('credential'))
   const homepage = `
     <header class="main-header">
-      <img src="https://raw.githubusercontent.com/JD-Rodrigues/d_trello/styles/front-end/view/assets/images/logo-dtrello.png" class="logo-header">
+      <img src="https://raw.githubusercontent.com/JD-Rodrigues/d_trello/styles/front-end/view/assets/images/logo-header.png" class="logo-header">
       <input type="search" id="search" oninput=filterCards() placeholder="Busca"/>
       <div class="user">
         <p class="user-name"></p>
