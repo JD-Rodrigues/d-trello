@@ -303,9 +303,9 @@ var dragula = require('dragula');
 
         //set style
         if (self.options.responsivePercentage) {
-          boardNode.style.width = boardWidth + '%'
+          boardNode.style.width = '300px'
         } else {
-          boardNode.style.maxWidth = boardWidth
+          boardNode.style.maxWidth = '300px'
         }
         boardNode.style.marginLeft = self.options.gutter
         boardNode.style.marginRight = self.options.gutter
@@ -991,6 +991,9 @@ function dragula (initialContainers, options) {
     var op = remove ? 'remove' : 'add';
     touchy(documentElement, op, 'mousedown', grab);
     touchy(documentElement, op, 'mouseup', release);
+
+    touchy(documentElement, op, 'touchstart', grab);
+    touchy(documentElement, op, 'touchend', release);
   }
 
   function eventualMovements (remove) {
