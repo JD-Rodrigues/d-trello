@@ -9,6 +9,11 @@
   background-color: var(--background-dark);
 }
 
+.logo-header {
+  width: 20%;
+  height: 100%;
+}
+
 .main-header, .main-header #logout {
   color: whitesmoke
 }
