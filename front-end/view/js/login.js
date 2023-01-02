@@ -46,6 +46,7 @@ const showHome = async () => {
     <div id="dTrello"></div>
   `
   body.innerHTML = `${homepage}`
+  console.log(credential.picture)
   body.querySelector('.user-name').innerHTML = credential.name
   document.querySelector('.profile-picture').src = credential.picture
   

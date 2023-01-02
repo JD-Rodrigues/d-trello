@@ -160,8 +160,8 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
           
         } else {
           Swal.fire({
-            title: 'Insira um nome para o novo card!',
-      
+            title: 'Insira um nome para o novo card!',            
+            confirmButtonColor:'#4caf50'
           })
         }
       });      
@@ -227,10 +227,16 @@ const addEventToRemoveBoards = () => {
       Swal.fire({
         title: 'Remova todas as tarefas do quadro antes de deletá-lo!',
         showCancelButton: false,
+        confirmButtonColor: '#4caf50'
     }) 
     } else {
+      
       Swal.fire({
+        
         title: 'Gostaria realmente de deletar este quadro?',
+        showCancelButton: true,
+        confirmButtonColor: '#e52620',
+        cancelButtonColor: '#2b3742'
     }).then(button=> {
       if(button.isConfirmed === true){
         board.parentElement.remove()
@@ -262,6 +268,8 @@ const nameNewBoard = () => {
   Swal.fire({
     title: 'Dê um nome ao novo quadro:',
     input: 'text',
+    confirmButtonColor: '#4caf50',
+    cancelButtonColor: '#2b3742',
     showCancelButton: true,
     inputValue:""
 }).then(boardName=>{
@@ -301,24 +309,30 @@ const nameNewBoard = () => {
 // var addBoard = document.getElementById("addNewBoard");
 // addBoard.addEventListener("click", nameNewBoard);
 
-const confirmRemoveBoard = (boardId) => {
-  Swal.fire({
-    title: 'Gostaria realmente de deletar este quadro?',
-}).then(button=> {
-  if(button.isConfirmed === true){
-  deleteData('boards', boardId).then(getData)
-}
- } )
-}
+
+// const confirmRemoveBoard = (boardId) => {
+//   Swal.fire({
+//     title: 'Gostaria realmente de deletar este quadro?',
+//     confirmButtonColor: '#e52620',
+//     cancelButtonColor: '#2b3742'
+// }).then(button=> {
+//   if(button.isConfirmed === true){
+//   deleteData('boards', boardId).then(getData)
+// }
+//  } )
+// }
 
 //This function receive a card element as argument and opens a confirm modal. If the confirm button is clicked, the card will be removed.
 const confirmRemoveCard = (cardId, target) => {
+  console.log(target)
   Swal.fire({
     title: 'Gostaria realmente de deletar este card?',
     showCancelButton: true,
+    confirmButtonColor: '#e52620',
+    cancelButtonColor: '#2b3742'
 }).then(button=> {
   if(button.isConfirmed === true){
-    target.remove()
+    target.parentElement.remove()
     deleteData('tasks', cardId)
 }
  } )

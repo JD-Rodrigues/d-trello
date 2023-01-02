@@ -342,5 +342,18 @@ body {
   display: none;
 }
 
+/* Modals */
+
+.confirm-delete {
+  background-color: var(--highlight);
+}
+
+.cancel-button {
+  background-color: var(--background-dark);
+}
+
+.agreement {
+  background-color: var(--success);
+}
 
 
