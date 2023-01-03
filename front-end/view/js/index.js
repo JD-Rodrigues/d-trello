@@ -5,10 +5,10 @@ const getData = async () => {
   const credential = await JSON.parse(localStorage.getItem('credential'))
   if (credential) {
     const userCode = credential.user_code
-    const dataBoards = await readData('boards', credential.user_code )
-    const dataTasks = await readData('tasks', credential.user_code )
-
-    dataBoards.sort((a,b)=>{
+    try {
+      const dataBoards = await readData('boards', credential.user_code )
+      const dataTasks = await readData('tasks', credential.user_code )
+      dataBoards.sort((a,b)=>{
       switch (a.board_order > b.board_order) {   
         case true:
           return 1;
@@ -19,41 +19,41 @@ const getData = async () => {
         default:
           break;
       }
-    })
-    
-    dataTasks.sort((a,b)=>{
-      switch (a.task_order > b.task_order) {   
-        case true:
-          return 1;
-          break;
-        case false:
-          return -1;
-          break
-        default:
-          break;
-      }
-    })
-
-    
-    let boards = []
-    let tasks = []
-    for (let board in await dataBoards) {
-      boards.push(
-        {
-          id: `_todo${dataBoards[board].id}`,
-          idNumber: dataBoards[board].id,
-          title: dataBoards[board].title,
-          class: dataBoards[board].class,
-          dragTo: [],
+      })
+      
+      dataTasks.sort((a,b)=>{
+        switch (a.task_order > b.task_order) {   
+          case true:
+            return 1;
+            break;
+          case false:
+            return -1;
+            break
+          default:
+            break;
         }
-      )
-    }
-    document.querySelector('#dTrello').innerHTML=""
+      })
 
-    InstanceKanban(boards, dataTasks, userCode)
-    
-    
-    
+      
+      let boards = []
+      let tasks = []
+      for (let board in await dataBoards) {
+        boards.push(
+          {
+            id: `_todo${dataBoards[board].id}`,
+            idNumber: dataBoards[board].id,
+            title: dataBoards[board].title,
+            class: dataBoards[board].class,
+            dragTo: [],
+          }
+        )
+      }
+      document.querySelector('#dTrello').innerHTML=""
+
+      InstanceKanban(boards, dataTasks, userCode)
+    } catch (error) {
+      document.querySelector('#dTrello').innerHTML += `<dialog open="true" class="nodata-warning"><p>Desculpe... Tivemos um problema com nossa base de dados. Volte dentro de alguns instantes.</p></dialog>`
+    }
   }
   
 }
