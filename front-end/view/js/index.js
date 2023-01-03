@@ -165,6 +165,22 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
         const childrenLength = e.target.parentElement.children.length
         console.log(userCode)
         if (text) {
+          Swal.fire({
+            title: 'Criando card em...',
+            html: '<b></b> milliseconds.',
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          })
           createData('tasks', {title: text, board_id:boardId, task_order:childrenLength, user_code: userCode}).then(formItem.parentNode.removeChild(formItem)).then(getData)
           
         } else {
@@ -290,7 +306,22 @@ const nameNewBoard = () => {
         if(boardName.isConfirmed === true) {
           const container = document.querySelector('#dTrello')
           const credential = JSON.parse(localStorage.getItem('credential'))
-          
+          Swal.fire({
+            title: 'Criando quadro em...',
+            html: '<b></b> milliseconds.',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          })
           readData('boards', credential && credential.user_code).then(boards => {
             console.log(boards)
             createData('boards',
