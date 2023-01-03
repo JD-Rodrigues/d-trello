@@ -63,6 +63,24 @@
   scroll-behavior: smooth;
 }
 
+@keyframes loading {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+.loading {
+  width: 100px;
+  height: 100px;
+  border-top: var(--background-light) solid 10px;
+  border-bottom: var(--background-light) solid 10px;
+  border-right: transparent solid 10px;
+  border-left: transparent solid 10px;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 100px;
+  animation: 1s loading infinite linear;
+}
+
 .nodata-warning {
   padding: 30px;
   margin-top: 100px;

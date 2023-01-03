@@ -43,7 +43,7 @@ const showHome = async () => {
       </div>
     </header>
     <button id="addNewBoard">+ Novo quadro</button>
-    <div id="dTrello"></div>
+    <div id="dTrello"><div class="loading"></div></div>
   `
   body.innerHTML = `${homepage}`
   console.log(credential.picture)

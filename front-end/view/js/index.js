@@ -52,7 +52,7 @@ const getData = async () => {
 
       InstanceKanban(boards, dataTasks, userCode)
     } catch (error) {
-      document.querySelector('#dTrello').innerHTML += `<dialog open="true" class="nodata-warning"><p>Desculpe... Tivemos um problema com nossa base de dados. Volte dentro de alguns instantes.</p></dialog>`
+      document.querySelector('#dTrello').innerHTML = `<dialog open="true" class="nodata-warning"><p>Desculpe... Tivemos um problema com nossa base de dados. Volte dentro de alguns instantes.</p></dialog>`
     }
   }
   
