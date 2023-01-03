@@ -79,7 +79,7 @@ var dragula = require('dragula');
       //set initial boards
       __setBoard()
       //set drag with dragula
-      if (window.innerWidth > self.options.responsive) {
+      
         //Init Drag Board
         self.drakeBoard = self
           .dragula([self.container], {
@@ -178,7 +178,7 @@ var dragula = require('dragula');
                 el.dropfn(el, target, source, sibling)
             }
           })
-      }
+      
     }
 
     this.enableAllBoards = function () {
@@ -991,9 +991,6 @@ function dragula (initialContainers, options) {
     var op = remove ? 'remove' : 'add';
     touchy(documentElement, op, 'mousedown', grab);
     touchy(documentElement, op, 'mouseup', release);
-
-    touchy(documentElement, op, 'touchstart', grab);
-    touchy(documentElement, op, 'touchend', release);
   }
 
   function eventualMovements (remove) {
