@@ -44,7 +44,7 @@
 }
 
 #addNewBoard {
-  margin: 100px 0 0 50px;
+  margin: 110px 0 15px 50px;
   padding: 5px 10px;
 }
 
@@ -64,9 +64,8 @@
 .kanban-container {
   position: relative;
   box-sizing: border-box;
-  width: auto;
-  padding: 10px 40px 0 40px;
   display: flex;
+  column-gap: 15px;
 }
 
 .kanban-container * {
@@ -90,6 +89,7 @@
 .kanban-board {
   position: relative;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  width: 300px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -302,7 +302,7 @@ body {
 
 #dTrello {
   overflow-x: auto;
-  padding: 20px 0;
+  padding: 10px 40px 0 50px;
   min-height: 90vh;
 }
 
@@ -331,7 +331,7 @@ body {
   border: none;
   color: white;
   padding: 7px 15px;
-  margin: 10px;
+  margin-top: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

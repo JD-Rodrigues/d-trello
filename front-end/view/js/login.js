@@ -35,7 +35,7 @@ const showHome = async () => {
   const homepage = `
     <header class="main-header">
       <img src="https://raw.githubusercontent.com/JD-Rodrigues/d_trello/styles/front-end/view/assets/images/logo-header.png" class="logo-header">
-      <input type="search" id="search" oninput=filterCards() placeholder="Busca"/>
+      <input type="search" id="search" placeholder="Busca"/>
       <div class="user">
         <p class="user-name"></p>
         <img src="" class="profile-picture">
@@ -49,7 +49,11 @@ const showHome = async () => {
   console.log(credential.picture)
   body.querySelector('.user-name').innerHTML = credential.name
   document.querySelector('.profile-picture').src = credential.picture
-  
+  document.querySelector('#search').addEventListener('input', ()=> {
+    setTimeout(()=> {
+      filterCards()
+    },300)
+  })
   
   await getData()
 

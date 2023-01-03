@@ -50,11 +50,20 @@ const getData = async () => {
     }
     document.querySelector('#dTrello').innerHTML=""
 
-    InstanceKanban(boards, dataTasks, userCode)  
+    InstanceKanban(boards, dataTasks, userCode)
+    
+    
+    
   }
   
 }
 
+
+const setContainerWidth = () => {
+  const containerLenght = document.querySelectorAll('.kanban-board').length
+  console.log(containerLenght * 300 + 15 * (containerLenght - 1))
+  document.querySelector('.kanban-container').style.width = `${containerLenght * 300 + 15 * (containerLenght - 1)}px`
+}
 
 // Set display "none" for all inputs in the boards' title and restore the initial condition to the titles: display "inline".
 const hideAllInputs = () => {
@@ -84,7 +93,7 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
   var KanbanManager = await new jkanban({
     element: "#dTrello",
     gutter: "10px",
-    widthBoard: "500px",
+    // widthBoard: "500px",
     itemHandleOptions:{
       enabled: true,
     },
@@ -179,6 +188,7 @@ var InstanceKanban = async (allBoards, allTasks, userCode) => {
 
   document.querySelectorAll('.kanban-board-header').forEach(header=> header.innerHTML += `<input type="text" class="kanban-title-input" maxlength="30">`)
 
+  setContainerWidth()
   
 
   addEventToEditName()

@@ -38,8 +38,8 @@ var dragula = require('dragula');
     }
     var defaults = {
       element: '',
-      gutter: '15px',
-      widthBoard: '250px',
+      // gutter: '15px',
+      // widthBoard: '250px',
       responsive: '700',
       responsivePercentage: false,
       boards: [],
@@ -255,17 +255,17 @@ var dragula = require('dragula');
     }
 
     this.addBoards = function (boards, isInit) {
-      if (self.options.responsivePercentage) {
-        self.container.style.width = '100%'
-        self.options.gutter = '1%'
-        if (window.innerWidth > self.options.responsive) {
-          var boardWidth = (100 - boards.length * 2) / boards.length
-        } else {
-          var boardWidth = 100 - boards.length * 2
-        }
-      } else {
-        var boardWidth = self.options.widthBoard
-      }
+      // if (self.options.responsivePercentage) {
+      //   // self.container.style.width = '100%'
+      //   // self.options.gutter = '1%'
+      //   if (window.innerWidth > self.options.responsive) {
+      //     var boardWidth = (100 - boards.length * 2) / boards.length
+      //   } else {
+      //     var boardWidth = 100 - boards.length * 2
+      //   }
+      // } else {
+      //   var boardWidth = self.options.widthBoard
+      // }
       var addButton = self.options.itemAddOptions.enabled
       var buttonContent = self.options.itemAddOptions.content
       var buttonClass = self.options.itemAddOptions.class
@@ -279,19 +279,19 @@ var dragula = require('dragula');
           self.options.boards.push(board)
         }
 
-        if (!self.options.responsivePercentage) {
-          //add width to container
-          if (self.container.style.width === '') {
-            self.container.style.width =
-              parseInt(boardWidth) + parseInt(self.options.gutter) * 2 + 'px'
-          } else {
-            self.container.style.width =
-              parseInt(self.container.childElementCount) *
-              parseInt(boardWidth) +
-              parseInt(self.options.gutter) * 2 +
-              'px'
-          }
-        }
+        // if (!self.options.responsivePercentage) {
+        //   //add width to container
+        //   if (self.container.style.width === '') {
+        //     self.container.style.width =
+        //       parseInt(boardWidth) + parseInt(self.options.gutter) * 2 + 'px'
+        //   } else {
+        //     self.container.style.width =
+        //       parseInt(self.container.childElementCount) *
+        //       parseInt(boardWidth) +
+        //       parseInt(self.options.gutter) * 2 +
+        //       'px'
+        //   }
+        // }
         //create node
         var boardNode = document.createElement('div')
         var boardWrapper = document.createElement('div')
@@ -302,13 +302,13 @@ var dragula = require('dragula');
         boardWrapper.classList.add('board-wrapper')
 
         //set style
-        if (self.options.responsivePercentage) {
-          boardNode.style.width = '300px'
-        } else {
-          boardNode.style.maxWidth = '300px'
-        }
-        boardNode.style.marginLeft = self.options.gutter
-        boardNode.style.marginRight = self.options.gutter
+        // if (self.options.responsivePercentage) {
+        //   boardNode.style.width = '300px'
+        // } else {
+        //   boardNode.style.maxWidth = '300px'
+        // }
+        // boardNode.style.marginLeft = self.options.gutter
+        // boardNode.style.marginRight = self.options.gutter
         // header board
         var headerBoard = document.createElement('header')
         if (board.class !== '' && board.class !== undefined)
