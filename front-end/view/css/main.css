@@ -421,7 +421,6 @@ body {
 
   .input-hamburguer-wrapper {
     display: flex;
-    border: red solid;
   }
 
   .hamburguer {
@@ -441,7 +440,6 @@ body {
     row-gap: 20px;
     background-color: var(--background-dark);
     transition: 0.5s;
-    border: red solid;
   }
 
   .menu-mobile-show {
