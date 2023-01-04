@@ -1,6 +1,7 @@
 
 
 .main-header {
+  position: relative;
   width: 100%;
   padding: 10px;
   padding: 5px 50px;
@@ -28,6 +29,13 @@
   font-weight: bold;
 }
 
+
+
+.main-header .user .back {
+  display: none;
+  align-self: flex-end;
+}
+
 .profile-picture {
   width: 40px;
   border-radius: 50%;
@@ -45,8 +53,23 @@
   padding: 5px;
 }
 
+.hamburguer {
+  position: absolute;
+  right: 50px;
+  top: 40px;
+  width: 30px;
+  height: 20px;
+  display: none;
+}
+
+.hamburguer div {
+  width: 100%;
+  height: 2px;
+  background-color: var(--background-light);
+}
+
 #addNewBoard {
-  margin: 110px 0 15px 50px;
+  margin: 150px 0 15px 50px;
   padding: 5px 10px;
 }
 
@@ -379,6 +402,71 @@ body {
 
 .agreement {
   background-color: var(--success);
+}
+
+@media (max-width: 699px) {
+  .main-header {
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 15px;
+  }
+
+  .logo-header {
+    width: 30%;
+  }
+
+  #search {
+    width: 30%;
+  }
+
+  .input-hamburguer-wrapper {
+    display: flex;
+    border: red solid;
+  }
+
+  .hamburguer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .user {
+    position: fixed;
+    width: 200px;
+    height:100vh;
+    padding: 20px;
+    top: 0;
+    right: -200px;
+    flex-direction: column;
+    row-gap: 20px;
+    background-color: var(--background-dark);
+    transition: 0.5s;
+    border: red solid;
+  }
+
+  .menu-mobile-show {
+    right: 0;
+  }
+
+  .main-header .user .back {
+    display: block;
+  }
+
+  .user .profile-picture {
+    width: 50px;
+    height: 50px;
+    order: 1;
+    margin-top: 50px;
+  }
+  .user .user-name {
+    order: 2;
+  }
+
+  #logout {
+    height: auto;
+    margin-left: 0;
+    order: 3;
+  }
 }
 
 

@@ -1,4 +1,5 @@
 // it sorts an object array by order column: board_order or task_order.
+onresize = () => openMobileMenu()
 
 
 const getData = async () => {
@@ -56,6 +57,13 @@ const getData = async () => {
     }
   }
   
+}
+
+const openMobileMenu = () => {
+  if(screen.width < 700) {
+    document.querySelector('.hamburguer').addEventListener('click', ()=> document.querySelector('.user').classList.add('menu-mobile-show'))
+    document.querySelector('.back').addEventListener('click', ()=> document.querySelector('.user').classList.remove('menu-mobile-show'))
+  }
 }
 
 

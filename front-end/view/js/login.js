@@ -29,6 +29,8 @@ async function handleCredentialResponse(response) {
   // console.log(userInDatabase)
 }
 
+
+
 const showHome = async () => {
   const body = document.querySelector('body')
   const credential = JSON.parse(localStorage.getItem('credential'))
@@ -36,7 +38,13 @@ const showHome = async () => {
     <header class="main-header">
       <img src="https://raw.githubusercontent.com/JD-Rodrigues/d_trello/styles/front-end/view/assets/images/logo-header.png" class="logo-header">
       <input type="search" id="search" placeholder="Busca"/>
+      <div class="hamburguer">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <div class="user">
+        <p class="back">➙</p>
         <p class="user-name"></p>
         <img src="" class="profile-picture">
         <button id="logout" onclick="logout()">Sair</button>
@@ -45,7 +53,9 @@ const showHome = async () => {
     <button id="addNewBoard">+ Novo quadro</button>
     <div id="dTrello"><div class="loading"></div></div>
   `
+  
   body.innerHTML = `${homepage}`
+  
   console.log(credential.picture)
   body.querySelector('.user-name').innerHTML = credential.name
   document.querySelector('.profile-picture').src = credential.picture
@@ -54,11 +64,17 @@ const showHome = async () => {
       filterCards()
     },300)
   })
-  
+ 
   await getData()
 
   var addBoard = document.getElementById("addNewBoard");
   addBoard.addEventListener("click", nameNewBoard);
+
+  openMobileMenu()
+}
+
+const showMobileMenu = function() {
+  document.querySelector.apply('.user').style.right='0'
 }
 
 const showLoginScreen = () => {
