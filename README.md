@@ -7,8 +7,8 @@
 <p>Live do projeto: <a href="https://d-trello-front.onrender.com/">clique aqui.</a></p><br>
 <div align="center"><img  src="./front-end/view/assets/images/screenshots/d-trello-desktop-demo.gif" /></div><br>
 <div style="display: flex; justify-content: space-around;">
-  <div  style="max-height: 50%"><img  src="./front-end/view/assets/images/screenshots/d-trello-tablet.png" /></div>
-  <div  style="max-height: 50%"><img  src="./front-end/view/assets/images/screenshots/d-trello-smartphone.png" /></div>
+  <div  style=" display:inline-block"><img  src="./front-end/view/assets/images/screenshots/d-trello-tablet.png" /></div>
+  <div  style=" display:inline-block"><img  src="./front-end/view/assets/images/screenshots/d-trello-smartphone.png" /></div>
 </div>
 
 ## Objetivo:
