@@ -1,5 +1,3 @@
-<script src="https://gist.github.com/rxaviers/7360908.js"></script>
-
 <p align="center">
   <img width=200 src="./front-end/view/assets/images/logo-readme.png" />
 </p>
