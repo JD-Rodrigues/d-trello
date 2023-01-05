@@ -7,13 +7,13 @@
 <p>Live do projeto: <a href="https://d-trello-front.onrender.com/">clique aqui.</a></p><br>
 <div align="center"><img  src="./front-end/view/assets/images/screenshots/d-trello-desktop-demo.gif" /></div><br>
 
-<!-- | tablet   | smartphone |
-|----------|:---------|:--------:|---------:|
-| [example](/example.png) | [example](/example.png) | [example](/example.png) | [example](/example.png) | -->
-<div style="display: flex; justify-content: space-around;">
+| tablet   | smartphone |
+|----------|:---------|
+| <img  src="./front-end/view/assets/images/screenshots/d-trello-tablet.png" > | <img  src="./front-end/view/assets/images/screenshots/d-trello-smartphone.png" > | 
+<!-- <div style="display: flex; justify-content: space-around;">
   <div  style=" display:inline-block"><img  src="./front-end/view/assets/images/screenshots/d-trello-tablet.png" ></div>
   <div  style=" display:inline-block"><img  src="./front-end/view/assets/images/screenshots/d-trello-smartphone.png" ></div>
-</div>
+</div> -->
 
 ## Objetivo:
 Este aplicativo é resultado de minha busca por ser um profissional mais completo. Como desenvolvedor front-end, estive buscando dominar o essencial de back-end e dando passos iniciais em direção ao full-stack. Vi nesse tipo de aplicação uma oportunidade de ter um aprendizado prático e, ao mesmo tempo, desenvolver algo útil, critério que tem guiado minha jornada no desenvolvimento web.
