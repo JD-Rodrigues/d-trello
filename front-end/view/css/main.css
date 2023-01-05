@@ -350,8 +350,8 @@ body {
 
 #dTrello {
   overflow-x: auto;
-  padding: 10px 40px 0 50px;
-  min-height: 90vh;
+  padding: 10px 40px 10px 50px;
+  height: auto;
 }
 
 .kanban-board-header {
