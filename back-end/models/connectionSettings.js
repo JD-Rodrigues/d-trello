@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise');
 
 
-// host freehostia.com
+// host Railway.com
 // const connection = async () => {
 //   const connection = await mysql.createConnection("mysql://josrod366_dtrello:ephesius212@mysql.freehostia.com:3306/josrod366_dtrello"); 
 //   console.log('Conectou ao mysql')
@@ -16,15 +16,5 @@ const connection = async () => {
   return connection
 }
 
-
-
-
-// const conn = mariadb.createConnection({
-//   host: "localhost",
-//   user: "root", 
-//   password: "ephesius212",
-//   database: "d_trello",
-//   pipelining:true,
-// });
 
 module.exports = {connection}
