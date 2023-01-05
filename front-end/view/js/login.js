@@ -1,5 +1,5 @@
 
-// window.onload = () => checkLogin();
+window.onload = () => checkLogin();
 
 const checkUser = async (userCode) => {
   const user = await readData('users', userCode)
