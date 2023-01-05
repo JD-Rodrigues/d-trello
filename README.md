@@ -5,7 +5,7 @@
 ## 📋 Descrição: 
 <p>d-Trello é um aplicativo de gerenciamento de projeto baseado na web e utiliza o paradigma Kanban de gerenciamento.</p>
 
-🟢 **Live do projeto:** <a href="https://d-trello-front.onrender.com/">clique aqui.</a></br></br>
+🟢 **Live do projeto:** <a href="https://d-trello-front.onrender.com/">clique aqui.</a></br>
 
 
 <div style="width:100%"><img  src="./front-end/view/assets/images/screenshots/d-trello-desktop-demo.gif" /></div><br>
