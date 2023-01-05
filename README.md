@@ -1,10 +1,14 @@
+<script src="https://gist.github.com/rxaviers/7360908.js"></script>
+
 <p align="center">
   <img width=200 src="./front-end/view/assets/images/logo-readme.png" />
 </p>
 
-## Descrição:
+## 📋 Descrição: 
 <p>d-Trello é um aplicativo de gerenciamento de projeto baseado na web e utiliza o paradigma Kanban de gerenciamento.</p>
-<p>Live do projeto: <a href="https://d-trello-front.onrender.com/">clique aqui.</a></p><br>
+
+🟢 **Live do projeto:** <a href="https://d-trello-front.onrender.com/">clique aqui.</a></br></br>
+
 
 <div style="width:100%"><img  src="./front-end/view/assets/images/screenshots/d-trello-desktop-demo.gif" /></div><br>
 
@@ -17,10 +21,10 @@
   <div  style=" display:inline-block"><img  src="./front-end/view/assets/images/screenshots/d-trello-smartphone.png" ></div>
 </div> -->
 
-## Objetivo:
+## 🎯 Objetivo:
 Este aplicativo é resultado de minha busca por ser um profissional mais completo. Como desenvolvedor front-end, estive buscando dominar o essencial de back-end e dando passos iniciais em direção ao full-stack. Vi nesse tipo de aplicação uma oportunidade de ter um aprendizado prático e, ao mesmo tempo, desenvolver algo útil, critério que tem guiado minha jornada no desenvolvimento web.
 
-## Funcionalidades:
+## 🛠️ Funcionalidades:
 - Login com conta Google.
 - Criação, edição e remoção de quadros e tarefas.
 - É possível arrastar e soltar quadros e tarefas, a fim de reordená-los, bem como passar tarefas de um quadro para outro.
@@ -29,7 +33,7 @@ Este aplicativo é resultado de minha busca por ser um profissional mais complet
 - Scroll lateral automático após a criação de quadros, levando até o quadro criado, quando a lista de quadros excede a largura da tela. O mesmo se dá dentro de cada quadro, verticalmente,  ao criar tarefas.
 - Responsivo.
   
-## Tecnologias utilizadas:
+## 🔭 Tecnologias utilizadas:
 - **Html, CSS e Javascript** - linguagens puras utilizadas na criação do front-end.
 - **NodeJs** - usado para o desenvolvimento do back-end com Javascript.
 - **Express JS** - utilizado na criação do servidor e da API.
@@ -51,5 +55,5 @@ Este aplicativo é resultado de minha busca por ser um profissional mais complet
 - **Render** - hospedagem para os códigos do front e back-end.
 - **Railway** - hospedagem do banco de dados.
 
-## Status do projeto:
+## 🟡 Status do projeto:
 Já em funcionamento, mas em fase de refatoração.
