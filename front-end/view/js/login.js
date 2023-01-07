@@ -1,5 +1,5 @@
 
-// window.onload = () => checkLogin();
+window.onload = () => checkLogin();
 
 // It checks if user is in database
 const checkUser = async (userCode) => {
