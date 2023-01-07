@@ -1,2 +1,0 @@
-const { read } = require("./queries");
-

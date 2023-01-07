@@ -1,15 +1,17 @@
 
-window.onload = () => checkLogin();
+// window.onload = () => checkLogin();
 
+// It checks if user is in database
 const checkUser = async (userCode) => {
   const user = await readData('users', userCode)
   return user[0]
 }
 
+// It is called after user authentication by Google
 async function handleCredentialResponse(response) {
   const data = jwt_decode(response.credential)
-  console.log(data)
-  this.setUser = async () => {
+  
+  this.setUser = async () => {    
     const userInDatabase = await checkUser(data.sub)
     if(userInDatabase !== undefined) {
       localStorage.setItem('credential', JSON.stringify(userInDatabase))
@@ -24,9 +26,6 @@ async function handleCredentialResponse(response) {
   }
 
   this.setUser() 
-  
-  
-  // console.log(userInDatabase)
 }
 
 
@@ -70,11 +69,7 @@ const showHome = async () => {
   var addBoard = document.getElementById("addNewBoard");
   addBoard.addEventListener("click", nameNewBoard);
 
-  openMobileMenu()
-}
-
-const showMobileMenu = function() {
-  document.querySelector.apply('.user').style.right='0'
+  setEventToMobileMenu()
 }
 
 const showLoginScreen = () => {
@@ -99,11 +94,13 @@ const showLoginScreen = () => {
   google.accounts.id.prompt(); // also display the One Tap dialog
 }
 
+// It validates if user is logged to show the right screen: homepage or login.
 const checkLogin = () => {
   const credential = localStorage.getItem('credential')  
   credential === null ? showLoginScreen() : showHome()
 }
 
+// It removes user credential from localStorage
 const logout = () => {
   localStorage.removeItem('credential')
   checkLogin()

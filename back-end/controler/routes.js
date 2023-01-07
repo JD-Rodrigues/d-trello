@@ -13,7 +13,6 @@ router.get('/boards/:code', async (req, res)=> {
 })
 
 router.get('/tasks/:code', async (req, res)=> {
-  console.log('Passou na rota!')
   const code = req.params.code
   const data = await read('tasks',code)
   res.json(data)

@@ -33,10 +33,6 @@ const deleteData = async (route, id) => {
   })
 }
 
-// createData('tasks', {title: "Almoçar", board_id:1, task_order: 4})
-// createData('boards', {title: "Feito <i class='ph-pencil-fill'></i>", board_order:3, class:'default'})
-// updateData('boards', 24, {class: "success"})
-// deleteData('boards', 25)3
-// readData('users', 'hsaduhauidahdi95').then(data=>console.log(data))
+
 
 
